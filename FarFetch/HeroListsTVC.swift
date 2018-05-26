@@ -8,6 +8,39 @@
 
 import UIKit
 
+struct Response: Decodable {
+    let code: Int?
+    let status: String?
+    let copyright: String?
+    let attributionText: String?
+    let attributionHTML: String?
+    let etag: String?
+    let data: DataResponse?
+}
+
+struct DataResponse: Decodable {
+    let offset: Int?
+    let limit: Int?
+    let total: Int?
+    let count: Int?
+    let results: [Results]?
+}
+
+struct Results: Decodable {
+    let id: Int?
+    let name: String?
+    let description: String?
+    let modified: String?
+    let thumbnail: Thumbnail?
+}
+
+struct Thumbnail: Decodable {
+    let path: String?
+    let `extension`: String?
+}
+
+
+
 struct Hero: Decodable {
     let id: Int?
     let name: String?
@@ -16,6 +49,12 @@ struct Hero: Decodable {
     let number_of_lessons: Int?
 }
 
+
+struct Characters: Decodable {
+    let count: Int?
+    let limit: Int?
+    let offset: Int?
+}
 class HeroListsTVC: FfTVC {
     
     var heroList = [Hero]()
