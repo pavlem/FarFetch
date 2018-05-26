@@ -25,29 +25,33 @@ class HeroListsTVC: FfTVC {
         super.viewDidLoad()
         
         fetchHeroList()
+        setNavBar()
     }
 
     // MARK: - Helper
+    func setNavBar() {
+        navigationItem.title = "Heroes List"
+    }
+    
+    // MARK: Network Helper
     func fetchHeroList() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
 
         DispatchQueue.global(qos: .background).async {
-            
             NetworkHelper.shared.fetchHeroList(success: { (data) in
-                sleep(1)
-                
-                do {
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    self.heroList = try decoder.decode([Hero].self, from: data)
-                } catch let jsonErr {
-                    print("Failed to decode:", jsonErr)
-                }
-                
-                DispatchQueue.main.async {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                    self.tableView.reloadData()
-                }
+                sleep(2)
+                ParserHelper.shared.parseHeroList(fromData: data, success: { (heroes) in
+                    self.heroList = heroes
+                    DispatchQueue.main.async {
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        self.tableView.reloadData()
+                    }
+                }, isParsingAFail: { (isFail) in
+                    print(isFail) // Some Alert Can Be implemented here
+                    DispatchQueue.main.async {
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    }
+                })
             }, isHeroRetrivalFailed: { (isRequestFailed) in
                 print(isRequestFailed)
             })
@@ -63,7 +67,7 @@ extension HeroListsTVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "heroListCell_ID", for: indexPath) as! HeroListCell
-        cell.heroName.text = self.heroList[indexPath.row].name
+        cell.hero = self.heroList[indexPath.row]
         return cell
     }
 }

@@ -12,6 +12,16 @@ class HeroListCell: UITableViewCell {
 
     @IBOutlet weak var heroName: UILabel!
     
+    var hero: Hero? {
+        didSet {
+            setUI()
+        }
+    }
+    
+    func setUI(){
+        heroName.text = hero!.name
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
