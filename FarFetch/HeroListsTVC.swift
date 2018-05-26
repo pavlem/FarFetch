@@ -8,40 +8,62 @@
 
 import UIKit
 
+struct Hero: Decodable {
+    let id: Int?
+    let name: String?
+    let link: String?
+    let image_url: String?
+    let number_of_lessons: Int?
+}
+
 class HeroListsTVC: FfTVC {
     
-    var heroNames = [""]
+    var heroList = [Hero]()
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlString = "http://api.letsbuildthatapp.com/jsondecodable/courses_snake_case"
+        fetchHeroList()
+    }
+
+    // MARK: - Helper
+    func fetchHeroList() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
+
         DispatchQueue.global(qos: .background).async {
             
-            NetworkHelper.shared.fetchData(forUrlString: urlString, success: { (data) in
-                print(data)
-                self.heroNames = ["Paja", "Pera", "Zika", "Mica"]
+            NetworkHelper.shared.fetchHeroList(success: { (data) in
                 sleep(1)
+                
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    self.heroList = try decoder.decode([Hero].self, from: data)
+                } catch let jsonErr {
+                    print("Failed to decode:", jsonErr)
+                }
+                
                 DispatchQueue.main.async {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     self.tableView.reloadData()
                 }
-            }) { (isRequestFailed) in
+            }, isHeroRetrivalFailed: { (isRequestFailed) in
                 print(isRequestFailed)
-            }
+            })
         }
     }
-    
-    // MARK: - Table view data source
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return heroNames.count
-    }
+}
 
+// MARK: - Table view data source
+extension HeroListsTVC {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.heroList.count
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "heroListCell_ID", for: indexPath) as! HeroListCell
-        cell.heroName.text = heroNames[indexPath.row]
+        cell.heroName.text = self.heroList[indexPath.row].name
         return cell
     }
 }

@@ -8,17 +8,26 @@
 
 import Foundation
 
+struct URLStrings {
+    static let heroList = "http://api.letsbuildthatapp.com/jsondecodable/courses_snake_case"
+
+}
+
 
 class NetworkHelper {
     static let shared = NetworkHelper()
     
-    //        public func get(engagementUid: String, fail: @escaping (OctopusNetworking.OCError) -> Swift.Void, success: @escaping (OctopusNetworking.Engagement) -> Swift.Void)
+    func fetchHeroList(success: @escaping (Data) -> Void, isHeroRetrivalFailed: @escaping (Bool) -> Void) {
+        fetchData(forUrlString: URLStrings.heroList, success: { (data) in
+            success(data)
+        }) { (isRequestFailed) in
+            isHeroRetrivalFailed(isRequestFailed)
+        }
+    }
     
     func fetchData(forUrlString urlString: String, success: @escaping (Data) -> Void, isRequestFailed: @escaping (Bool) -> Void) {
         guard let url = URL(string: urlString) else { return }
-        
- 
-        
+
         URLSession.shared.dataTask(with: url) { (data, urlResponse, err) in
  
             if let httpResponse = urlResponse as? HTTPURLResponse {
@@ -32,11 +41,9 @@ class NetworkHelper {
                 isRequestFailed(true)
                 return
             }
+            
             guard let data = data else { return }
             success(data)
             }.resume()
     }
-    
 }
-
-

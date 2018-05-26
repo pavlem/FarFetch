@@ -17,6 +17,7 @@
 		9EF214AC20B95BAE001015AD /* HeroListsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF214AB20B95BAE001015AD /* HeroListsTVC.swift */; };
 		9EF214B020B95D31001015AD /* HeroListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF214AF20B95D31001015AD /* HeroListCell.swift */; };
 		9EF214B220B95DF6001015AD /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF214B120B95DF6001015AD /* NetworkHelper.swift */; };
+		9EF214B420B96FBB001015AD /* ParserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF214B320B96FBB001015AD /* ParserHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		9EF214AB20B95BAE001015AD /* HeroListsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroListsTVC.swift; sourceTree = "<group>"; };
 		9EF214AF20B95D31001015AD /* HeroListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroListCell.swift; sourceTree = "<group>"; };
 		9EF214B120B95DF6001015AD /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		9EF214B320B96FBB001015AD /* ParserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		9EF2146E20B95A95001015AD = {
 			isa = PBXGroup;
 			children = (
+				9EF214B320B96FBB001015AD /* ParserHelper.swift */,
 				9EF2147920B95A95001015AD /* FarFetch */,
 				9EF2148E20B95A96001015AD /* FarFetchTests */,
 				9EF2149920B95A97001015AD /* FarFetchUITests */,
@@ -275,6 +278,7 @@
 			files = (
 				9EF2147B20B95A95001015AD /* AppDelegate.swift in Sources */,
 				9EF214AA20B95B1E001015AD /* FfTVC.swift in Sources */,
+				9EF214B420B96FBB001015AD /* ParserHelper.swift in Sources */,
 				9EF214B220B95DF6001015AD /* NetworkHelper.swift in Sources */,
 				9EF214B020B95D31001015AD /* HeroListCell.swift in Sources */,
 				9EF214AC20B95BAE001015AD /* HeroListsTVC.swift in Sources */,
