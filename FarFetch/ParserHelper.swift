@@ -16,8 +16,12 @@ class ParserHelper {
         do {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
-            let heroList = try decoder.decode([Hero].self, from: data)
-            success(heroList)
+            let response = try decoder.decode(MarvelServerResponse.self, from: data)
+            if let heroList = response.data?.results {
+                success(heroList)
+            } else {
+                isParsingAFail(true)
+            }
         } catch let jsonErr {
             print("Failed to decode:", jsonErr)
             isParsingAFail(true)

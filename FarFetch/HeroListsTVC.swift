@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Response: Decodable {
+struct MarvelServerResponse: Decodable {
     let code: Int?
     let status: String?
     let copyright: String?
@@ -23,10 +23,10 @@ struct DataResponse: Decodable {
     let limit: Int?
     let total: Int?
     let count: Int?
-    let results: [Results]?
+    let results: [Hero]?
 }
 
-struct Results: Decodable {
+struct Hero: Decodable {
     let id: Int?
     let name: String?
     let description: String?
@@ -39,22 +39,6 @@ struct Thumbnail: Decodable {
     let `extension`: String?
 }
 
-
-
-struct Hero: Decodable {
-    let id: Int?
-    let name: String?
-    let link: String?
-    let image_url: String?
-    let number_of_lessons: Int?
-}
-
-
-struct Characters: Decodable {
-    let count: Int?
-    let limit: Int?
-    let offset: Int?
-}
 class HeroListsTVC: FfTVC {
     
     var heroList = [Hero]()
@@ -78,7 +62,6 @@ class HeroListsTVC: FfTVC {
 
         DispatchQueue.global(qos: .background).async {
             NetworkHelper.shared.fetchHeroList(success: { (data) in
-                sleep(2)
                 ParserHelper.shared.parseHeroList(fromData: data, success: { (heroes) in
                     self.heroList = heroes
                     DispatchQueue.main.async {
@@ -86,9 +69,9 @@ class HeroListsTVC: FfTVC {
                         self.tableView.reloadData()
                     }
                 }, isParsingAFail: { (isFail) in
-                    print(isFail) // Some Alert Can Be implemented here
                     DispatchQueue.main.async {
                         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        // Some Alert Can Be implemented here to notify the user
                     }
                 })
             }, isHeroRetrivalFailed: { (isRequestFailed) in
@@ -101,12 +84,25 @@ class HeroListsTVC: FfTVC {
 // MARK: - Table view data source
 extension HeroListsTVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.heroList.count
+        return heroList.count
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "heroListCell_ID", for: indexPath) as! HeroListCell
-        cell.hero = self.heroList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellID.heroList, for: indexPath) as! HeroListCell
+        cell.hero = heroList[indexPath.row]
+        cell.delegate = self
         return cell
+    }
+}
+
+extension HeroListsTVC: HeroListCellDelegate {
+    func addToFavoritesAction(cell: HeroListCell) {
+        let indexPath = tableView.indexPath(for: cell)
+        
+        print(indexPath ?? "none")
     }
 }

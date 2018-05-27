@@ -47,8 +47,7 @@ class NetworkHelper {
         let urlQ2 = URLQueryItem(name: "ts", value: ts)
         let urlQ3 = URLQueryItem(name: "hash", value: hash)
 //        let urlQ4 = URLQueryItem(name: "limit", value: "10")
-        let urlQ5 = URLQueryItem(name: "offset", value: "100")
-
+//        let urlQ5 = URLQueryItem(name: "offset", value: "100")
 //        let urlQ5 = URLQueryItem(name: "name", value: "Spider-Man")
 
 
@@ -56,36 +55,20 @@ class NetworkHelper {
         let urlWithQueryParameters = addQueryParams(url: url, newParams: urlQueryItems)
         
         URLSession.shared.dataTask(with: urlWithQueryParameters!) { (data, urlResponse, err) in
+            if let httpResponse = urlResponse as? HTTPURLResponse {
+                guard httpResponse.statusCode == 200 else {
+                    isRequestFailed(true)
+                    return
+                }
+            }
 
-//            if let jsonResult = try? JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) {
-//                print(jsonResult)
-//            }
-//
-//            guard let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] else { return }
-//
-//            print(json)
+            if let _ = err {
+                isRequestFailed(true)
+                return
+            }
 
-            
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            let response = try? decoder.decode(Response.self, from: data!)
-            print(response)
-            
-//            if let httpResponse = urlResponse as? HTTPURLResponse {
-//                guard httpResponse.statusCode == 200 else {
-//                    isRequestFailed(true)
-//                    return
-//                }
-//            }
-//
-//            if let _ = err {
-//                isRequestFailed(true)
-//                return
-//            }
-//
-//            guard let data = data else { return }
-//            success(data)
+            guard let data = data else { return }
+            success(data)
 
             }.resume()
     }

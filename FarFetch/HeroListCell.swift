@@ -8,20 +8,27 @@
 
 import UIKit
 
+protocol HeroListCellDelegate: class {
+    func addToFavoritesAction(cell: HeroListCell)
+}
+
 class HeroListCell: UITableViewCell {
 
-    @IBOutlet weak var heroName: UILabel!
-    
+    // MARK: - API
+    weak var delegate: HeroListCellDelegate?
+
     var hero: Hero? {
         didSet {
             setUI()
         }
     }
     
-    func setUI(){
-        heroName.text = hero!.name
-    }
+    // MARK: - Outlets
+    @IBOutlet weak var heroName: UILabel!
+    @IBOutlet weak var heroImg: UIImageView!
+    @IBOutlet weak var addToFavoritesBtn: UIButton!
     
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -32,5 +39,14 @@ class HeroListCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    // MARK: - Helper
+    func setUI(){
+        heroName.text = hero!.name
+    }
+    
+    // MARK: - Actions
+    @IBAction func addToFavorites(_ sender: UIButton) {
+        delegate?.addToFavoritesAction(cell: self)
+    }
 }

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w3n-92-5G6">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Root View Controller-->
+        <scene sceneID="J5E-Zs-VPn">
+            <objects>
+                <tableViewController id="Y5d-3C-W66" customClass="HeroListsTVC" customModule="FarFetch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="afR-gS-y0k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="heroListCell_ID" rowHeight="80" id="iqF-PF-zeK" customClass="HeroListCell" customModule="FarFetch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iqF-PF-zeK" id="5s6-qf-EDX">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pAM-sN-gv7">
+                                            <rect key="frame" x="16" y="10" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="4ew-K6-cQJ"/>
+                                                <constraint firstAttribute="height" constant="60" id="Wbe-Rm-e8g"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCA-Z2-Wrk">
+                                            <rect key="frame" x="318" y="10" width="46" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="addToFavorites:" destination="iqF-PF-zeK" eventType="touchUpInside" id="XB5-xY-z81"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFy-kQ-ksO">
+                                            <rect key="frame" x="91" y="29.5" width="268" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pAM-sN-gv7" firstAttribute="leading" secondItem="5s6-qf-EDX" secondAttribute="leading" constant="16" id="L1b-J3-UbG"/>
+                                        <constraint firstItem="VFy-kQ-ksO" firstAttribute="leading" secondItem="pAM-sN-gv7" secondAttribute="trailing" constant="15" id="emI-vN-NmT"/>
+                                        <constraint firstItem="pAM-sN-gv7" firstAttribute="centerY" secondItem="5s6-qf-EDX" secondAttribute="centerY" id="n08-Sj-2V2"/>
+                                        <constraint firstAttribute="trailing" secondItem="VFy-kQ-ksO" secondAttribute="trailing" constant="16" id="n0h-sM-VWJ"/>
+                                        <constraint firstItem="VFy-kQ-ksO" firstAttribute="centerY" secondItem="5s6-qf-EDX" secondAttribute="centerY" id="olx-6n-n7z"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addToFavoritesBtn" destination="aCA-Z2-Wrk" id="g6m-fZ-5GQ"/>
+                                    <outlet property="heroImg" destination="pAM-sN-gv7" id="NLV-Xr-nn8"/>
+                                    <outlet property="heroName" destination="VFy-kQ-ksO" id="Rjk-Og-7fW"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Y5d-3C-W66" id="Cj4-Ci-YAv"/>
+                            <outlet property="delegate" destination="Y5d-3C-W66" id="XrW-37-mVJ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="vVI-t6-unR"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Osm-2g-Ln0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-348" y="174.96251874062969"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JdR-Ez-Fg8">
+            <objects>
+                <navigationController id="w3n-92-5G6" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lze-We-mVN">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Y5d-3C-W66" kind="relationship" relationship="rootViewController" id="g1h-fd-Z0P"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hP2-Mt-PWJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1178" y="175"/>
+        </scene>
+    </scenes>
+</document>
