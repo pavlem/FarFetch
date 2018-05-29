@@ -42,7 +42,10 @@ struct Thumbnail: Decodable {
 class HeroListsTVC: FfTVC {
     
     var heroList = [Hero]()
-
+    
+    private var isLoadingMore = false // flag
+    
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +53,7 @@ class HeroListsTVC: FfTVC {
         fetchHeroList()
         setNavBar()
     }
-
+    
     // MARK: - Helper
     func setNavBar() {
         navigationItem.title = "Heroes List"
@@ -59,7 +62,7 @@ class HeroListsTVC: FfTVC {
     // MARK: Network Helper
     func fetchHeroList() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-
+        
         DispatchQueue.global(qos: .background).async {
             NetworkHelper.shared.fetchHeroList(success: { (data) in
                 ParserHelper.shared.parseHeroList(fromData: data, success: { (heroes) in
@@ -95,6 +98,25 @@ extension HeroListsTVC {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellID.heroList, for: indexPath) as! HeroListCell
         cell.hero = heroList[indexPath.row]
         cell.delegate = self
+        
+        // Check if the last row number is the same as the last current data element
+        if indexPath.row == self.heroList.count - 1 {
+            if !isLoadingMore {
+                self.isLoadingMore = true
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
+                DispatchQueue.global(qos: .background).async {
+                    sleep(2)
+                    DispatchQueue.main.async {
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        self.heroList += self.heroList
+                        self.tableView.reloadData()
+                        self.isLoadingMore = false
+                    }
+                }
+            }
+            print("=====")
+        }
         return cell
     }
 }
