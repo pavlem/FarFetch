@@ -82,6 +82,17 @@ class HeroListsTVC: FfTVC {
             })
         }
     }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Segue.heroSearch {
+            if let heroSearchVC = segue.destination as? HeroSearchVC {
+                heroSearchVC.delegate = self
+            }
+        } else if segue.identifier == Segue.heroDetail {
+            //..
+        }
+    }
 }
 
 // MARK: - Table view data source
@@ -139,3 +150,22 @@ extension HeroListsTVC: HeroListCellDelegate {
         print(indexPath ?? "none")
     }
 }
+
+extension HeroListsTVC: HeroSearchVCDelegate {
+    func searchCompleteWith(heroes: [Hero]?) {
+        if let heroesLocal = heroes {
+            self.heroList.removeAll()
+            self.heroList = heroesLocal
+            self.tableView.reloadData()
+        }
+    }
+}
+
+
+
+
+
+
+
+
+

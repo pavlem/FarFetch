@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4eB-Hc-JWP">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Hero SearchVC-->
+        <scene sceneID="00C-pb-FUM">
+            <objects>
+                <viewController id="4eB-Hc-JWP" customClass="HeroSearchVC" customModule="FarFetch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ixS-yw-jFB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type Hero Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AzA-7v-TeS">
+                                <rect key="frame" x="123.5" y="29" width="129" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXS-aQ-drg">
+                                <rect key="frame" x="163" y="67" width="48" height="30"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="search:" destination="4eB-Hc-JWP" eventType="touchUpInside" id="xD7-bd-flF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.66852409889999997" blue="0.95890770160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="AzA-7v-TeS" firstAttribute="top" secondItem="Hob-Wd-nX0" secondAttribute="top" constant="29" id="1br-WT-Fws"/>
+                            <constraint firstItem="AzA-7v-TeS" firstAttribute="centerX" secondItem="Hob-Wd-nX0" secondAttribute="centerX" id="6d6-JY-gaE"/>
+                            <constraint firstItem="zXS-aQ-drg" firstAttribute="centerX" secondItem="Hob-Wd-nX0" secondAttribute="centerX" id="8GV-vB-JEK"/>
+                            <constraint firstItem="zXS-aQ-drg" firstAttribute="top" secondItem="AzA-7v-TeS" secondAttribute="bottom" constant="8" id="JGF-i4-TAf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Hob-Wd-nX0"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="heroNameTextFld" destination="AzA-7v-TeS" id="pk9-14-gGg"/>
+                        <outlet property="searchLbl" destination="zXS-aQ-drg" id="B5t-M6-F80"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ur4-XQ-Nsa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="80.799999999999997" y="130.88455772113943"/>
+        </scene>
+    </scenes>
+</document>

@@ -32,33 +32,35 @@
                                                 <constraint firstAttribute="height" constant="60" id="Wbe-Rm-e8g"/>
                                             </constraints>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCA-Z2-Wrk">
-                                            <rect key="frame" x="318" y="10" width="46" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button"/>
-                                            <connections>
-                                                <action selector="addToFavorites:" destination="iqF-PF-zeK" eventType="touchUpInside" id="XB5-xY-z81"/>
-                                            </connections>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFy-kQ-ksO">
-                                            <rect key="frame" x="91" y="29.5" width="268" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFy-kQ-ksO">
+                                            <rect key="frame" x="91" y="30" width="268" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCA-Z2-Wrk">
+                                            <rect key="frame" x="337" y="0.0" width="30" height="30"/>
+                                            <state key="normal" title="Add"/>
+                                            <connections>
+                                                <action selector="addToFavorites:" destination="iqF-PF-zeK" eventType="touchUpInside" id="XB5-xY-z81"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="aCA-Z2-Wrk" secondAttribute="trailing" constant="8" id="5fb-Tb-Q0D"/>
                                         <constraint firstItem="pAM-sN-gv7" firstAttribute="leading" secondItem="5s6-qf-EDX" secondAttribute="leading" constant="16" id="L1b-J3-UbG"/>
                                         <constraint firstItem="VFy-kQ-ksO" firstAttribute="leading" secondItem="pAM-sN-gv7" secondAttribute="trailing" constant="15" id="emI-vN-NmT"/>
                                         <constraint firstItem="pAM-sN-gv7" firstAttribute="centerY" secondItem="5s6-qf-EDX" secondAttribute="centerY" id="n08-Sj-2V2"/>
                                         <constraint firstAttribute="trailing" secondItem="VFy-kQ-ksO" secondAttribute="trailing" constant="16" id="n0h-sM-VWJ"/>
                                         <constraint firstItem="VFy-kQ-ksO" firstAttribute="centerY" secondItem="5s6-qf-EDX" secondAttribute="centerY" id="olx-6n-n7z"/>
+                                        <constraint firstItem="aCA-Z2-Wrk" firstAttribute="top" secondItem="5s6-qf-EDX" secondAttribute="top" id="qw9-XB-bYB"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addToFavoritesBtn" destination="aCA-Z2-Wrk" id="g6m-fZ-5GQ"/>
                                     <outlet property="heroImg" destination="pAM-sN-gv7" id="NLV-Xr-nn8"/>
                                     <outlet property="heroName" destination="VFy-kQ-ksO" id="Rjk-Og-7fW"/>
+                                    <segue destination="Fo4-xU-san" kind="show" identifier="HeroDetail_Segue" id="MY3-j2-UIU"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -67,11 +69,33 @@
                             <outlet property="delegate" destination="Y5d-3C-W66" id="XrW-37-mVJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="vVI-t6-unR"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="vVI-t6-unR">
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="XEF-7K-xev">
+                            <connections>
+                                <segue destination="5OT-xM-kk2" kind="show" identifier="HeroSearch_Segue" id="DVZ-0Q-hef"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Osm-2g-Ln0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-348" y="174.96251874062969"/>
+        </scene>
+        <!--HeroSearch-->
+        <scene sceneID="pS5-QO-hMx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HeroSearch" id="5OT-xM-kk2" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uqV-Pp-itN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="246" y="112"/>
+        </scene>
+        <!--HeroDetail-->
+        <scene sceneID="8Xf-lf-vqM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HeroDetail" id="Fo4-xU-san" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ElJ-KT-lDH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="241" y="201"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JdR-Ez-Fg8">

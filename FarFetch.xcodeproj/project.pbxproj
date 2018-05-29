@@ -10,6 +10,9 @@
 		9E51B21B20B9C8D60083C974 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E51B21A20B9C8D60083C974 /* CryptoSwift.framework */; };
 		9E51B21E20BAACB30083C974 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E51B21D20BAACB30083C974 /* Constants.swift */; };
 		9E51B22020BAAD480083C974 /* HeroList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E51B21F20BAAD480083C974 /* HeroList.storyboard */; };
+		9EBBE27B20BDD57200FF135A /* HeroDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EBBE27A20BDD57200FF135A /* HeroDetail.storyboard */; };
+		9EBBE27D20BDD66A00FF135A /* HeroSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EBBE27C20BDD66A00FF135A /* HeroSearch.storyboard */; };
+		9EBBE27F20BDD72900FF135A /* HeroSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */; };
 		9EF2147B20B95A95001015AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF2147A20B95A95001015AD /* AppDelegate.swift */; };
 		9EF2148220B95A96001015AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EF2148120B95A96001015AD /* Assets.xcassets */; };
 		9EF2148520B95A96001015AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EF2148320B95A96001015AD /* LaunchScreen.storyboard */; };
@@ -43,6 +46,9 @@
 		9E51B21A20B9C8D60083C974 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
 		9E51B21D20BAACB30083C974 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9E51B21F20BAAD480083C974 /* HeroList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroList.storyboard; sourceTree = "<group>"; };
+		9EBBE27A20BDD57200FF135A /* HeroDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroDetail.storyboard; sourceTree = "<group>"; };
+		9EBBE27C20BDD66A00FF135A /* HeroSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroSearch.storyboard; sourceTree = "<group>"; };
+		9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSearchVC.swift; sourceTree = "<group>"; };
 		9EF2147720B95A95001015AD /* FarFetch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarFetch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EF2147A20B95A95001015AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EF2148120B95A96001015AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +131,7 @@
 				9EF214B120B95DF6001015AD /* NetworkHelper.swift */,
 				9EF214AB20B95BAE001015AD /* HeroListsTVC.swift */,
 				9EF214AF20B95D31001015AD /* HeroListCell.swift */,
+				9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */,
 				9EF214A920B95B1E001015AD /* FfTVC.swift */,
 				9EF214A820B95AD8001015AD /* Resources */,
 			);
@@ -153,6 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				9E51B21F20BAAD480083C974 /* HeroList.storyboard */,
+				9EBBE27A20BDD57200FF135A /* HeroDetail.storyboard */,
+				9EBBE27C20BDD66A00FF135A /* HeroSearch.storyboard */,
 				9EF2148320B95A96001015AD /* LaunchScreen.storyboard */,
 				9EF2148120B95A96001015AD /* Assets.xcassets */,
 				9EF2147A20B95A95001015AD /* AppDelegate.swift */,
@@ -265,7 +274,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EBBE27D20BDD66A00FF135A /* HeroSearch.storyboard in Resources */,
 				9E51B22020BAAD480083C974 /* HeroList.storyboard in Resources */,
+				9EBBE27B20BDD57200FF135A /* HeroDetail.storyboard in Resources */,
 				9EF2148520B95A96001015AD /* LaunchScreen.storyboard in Resources */,
 				9EF2148220B95A96001015AD /* Assets.xcassets in Resources */,
 			);
@@ -312,6 +323,7 @@
 			files = (
 				9EF2147B20B95A95001015AD /* AppDelegate.swift in Sources */,
 				9EF214AA20B95B1E001015AD /* FfTVC.swift in Sources */,
+				9EBBE27F20BDD72900FF135A /* HeroSearchVC.swift in Sources */,
 				9EF214B420B96FBB001015AD /* ParserHelper.swift in Sources */,
 				9EF214B220B95DF6001015AD /* NetworkHelper.swift in Sources */,
 				9EF214B020B95D31001015AD /* HeroListCell.swift in Sources */,

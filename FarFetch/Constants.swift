@@ -8,7 +8,13 @@
 
 import Foundation
 
-
 struct CellID {
     static let heroList = "heroListCell_ID"
 }
+
+struct Segue {
+    static let heroSearch = "HeroSearch_Segue"
+    static let heroDetail = "HeroDetail_Segue"
+}
+
+
