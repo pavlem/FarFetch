@@ -24,6 +24,11 @@ var publicKey = "d4ac801ec659832e8eaa74553f0a2d35"
 class NetworkHelper {
     static let shared = NetworkHelper()
     
+    var characterListOffset = 0
+    
+    // MARK: - Constants
+    let characterListOffsetIncrement = 20
+    
     func fetchHeroList(success: @escaping (Data) -> Void, isHeroRetrivalFailed: @escaping (Bool) -> Void) {
         let heroListURLString = URLStrings.baseEndpoint + URLStrings.characters
         
@@ -47,11 +52,11 @@ class NetworkHelper {
         let urlQ2 = URLQueryItem(name: "ts", value: ts)
         let urlQ3 = URLQueryItem(name: "hash", value: hash)
 //        let urlQ4 = URLQueryItem(name: "limit", value: "10")
-//        let urlQ5 = URLQueryItem(name: "offset", value: "100")
+        let urlOffsetItem = URLQueryItem(name: "offset", value: String(describing: characterListOffset))
 //        let urlQ5 = URLQueryItem(name: "name", value: "Spider-Man")
 
 
-        let urlQueryItems = [urlQ1, urlQ2, urlQ3]
+        let urlQueryItems = [urlQ1, urlQ2, urlQ3, urlOffsetItem]
         let urlWithQueryParameters = addQueryParams(url: url, newParams: urlQueryItems)
         
         URLSession.shared.dataTask(with: urlWithQueryParameters!) { (data, urlResponse, err) in
@@ -68,6 +73,7 @@ class NetworkHelper {
             }
 
             guard let data = data else { return }
+            self.characterListOffset += self.characterListOffsetIncrement
             success(data)
 
             }.resume()

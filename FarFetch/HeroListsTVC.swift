@@ -106,13 +106,24 @@ extension HeroListsTVC {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
 
                 DispatchQueue.global(qos: .background).async {
-                    sleep(2)
-                    DispatchQueue.main.async {
-                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                        self.heroList += self.heroList
-                        self.tableView.reloadData()
-                        self.isLoadingMore = false
-                    }
+                    
+                    NetworkHelper.shared.fetchHeroList(success: { (data) in
+                        ParserHelper.shared.parseHeroList(fromData: data, success: { (heroes) in
+                            self.heroList += heroes
+                            DispatchQueue.main.async {
+                                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                                self.tableView.reloadData()
+                                self.isLoadingMore = false
+                            }
+                        }, isParsingAFail: { (isFail) in
+                            DispatchQueue.main.async {
+                                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                                // Some Alert Can Be implemented here to notify the user
+                            }
+                        })
+                    }, isHeroRetrivalFailed: { (isRequestFailed) in
+                        print(isRequestFailed)
+                    })
                 }
             }
             print("=====")
