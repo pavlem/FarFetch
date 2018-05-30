@@ -32,32 +32,43 @@ class NetworkHelper {
     func fetchHeroList(success: @escaping (Data) -> Void, isHeroRetrivalFailed: @escaping (Bool) -> Void) {
         let heroListURLString = URLStrings.baseEndpoint + URLStrings.characters
         
-        fetchData(forUrlString: heroListURLString, success: { (data) in
+        fetchData(forUrlString: heroListURLString, urlQueryItems: basicURLQueryItems(), success: { (data) in
             success(data)
         }) { (isRequestFailed) in
             isHeroRetrivalFailed(isRequestFailed)
         }
     }
     
-    func fetchData(forUrlString urlString: String, success: @escaping (Data) -> Void, isRequestFailed: @escaping (Bool) -> Void) {
-    
-        let ts = Date().timeIntervalSince1970.description
-        let hash = (ts + ApiKey.private + ApiKey.public).md5()
+    func fetchHero(_ name: String, success: @escaping (Data) -> Void, isHeroSearchFailed: @escaping (Bool) -> Void) {
         
-        guard let url = URL(string: urlString) else { return }
+        self.characterListOffset = 0
+        let urlHeroNameItem = URLQueryItem(name: "name", value: name)
+        let heroListURLString = URLStrings.baseEndpoint + URLStrings.characters
         
-        let urlQ1 = URLQueryItem(name: "apikey", value: ApiKey.public)
-        let urlQ2 = URLQueryItem(name: "ts", value: ts)
-        let urlQ3 = URLQueryItem(name: "hash", value: hash)
-//        let urlQ4 = URLQueryItem(name: "limit", value: "10")
-        let urlOffsetItem = URLQueryItem(name: "offset", value: String(describing: characterListOffset))
-//        let urlQ5 = URLQueryItem(name: "name", value: "Spider-Man")
+        var urlQueryItems = basicURLQueryItems()
+        urlQueryItems.insert(urlHeroNameItem, at: 0)
+//        urlQueryItems.append(urlHeroNameItem)
+        
+        
+        
+        fetchData(forUrlString: heroListURLString, urlQueryItems: urlQueryItems, success: { (data) in
+            success(data)
+        }) { (isRequestFailed) in
+            isHeroSearchFailed(isRequestFailed)
+        }
+    }
 
+    func fetchData(forUrlString urlString: String, urlQueryItems: [URLQueryItem]?, success: @escaping (Data) -> Void, isRequestFailed: @escaping (Bool) -> Void) {
 
-        let urlQueryItems = [urlQ1, urlQ2, urlQ3, urlOffsetItem]
-        let urlWithQueryParameters = addQueryParams(url: url, newParams: urlQueryItems)
+        guard var url = URL(string: urlString) else { return }
         
-        URLSession.shared.dataTask(with: urlWithQueryParameters!) { (data, urlResponse, err) in
+        if let urlQueryItemsLo = urlQueryItems {
+            url = addQueryParams(url: url, newParams: urlQueryItemsLo)!
+        }
+        
+        print(url)
+        
+        URLSession.shared.dataTask(with: url) { (data, urlResponse, err) in
             if let httpResponse = urlResponse as? HTTPURLResponse {
                 guard httpResponse.statusCode == 200 else {
                     isRequestFailed(true)
@@ -76,15 +87,27 @@ class NetworkHelper {
 
             }.resume()
     }
-}
-
-
-func addQueryParams(url: URL, newParams: [URLQueryItem]) -> URL? {
-    let urlComponents = NSURLComponents.init(url: url, resolvingAgainstBaseURL: false)
-    guard urlComponents != nil else { return nil; }
-    if (urlComponents?.queryItems == nil) {
-        urlComponents!.queryItems = [];
+    
+    // MARK: - Helper
+    func basicURLQueryItems() -> [URLQueryItem] {
+        let ts = Date().timeIntervalSince1970.description
+        let hash = (ts + ApiKey.private + ApiKey.public).md5()
+        
+        let urlApikeyItem = URLQueryItem(name: "apikey", value: ApiKey.public)
+        let urlTimeStampItem = URLQueryItem(name: "ts", value: ts)
+        let urlHashItem = URLQueryItem(name: "hash", value: hash)
+        let urlOffsetItem = URLQueryItem(name: "offset", value: String(describing: characterListOffset))
+        
+        return [urlApikeyItem, urlTimeStampItem, urlHashItem, urlOffsetItem]
     }
-    urlComponents!.queryItems!.append(contentsOf: newParams);
-    return urlComponents?.url;
+    
+    func addQueryParams(url: URL, newParams: [URLQueryItem]) -> URL? {
+        let urlComponents = NSURLComponents.init(url: url, resolvingAgainstBaseURL: false)
+        guard urlComponents != nil else { return nil; }
+        if (urlComponents?.queryItems == nil) {
+            urlComponents!.queryItems = [];
+        }
+        urlComponents!.queryItems!.append(contentsOf: newParams);
+        return urlComponents?.url;
+    }
 }

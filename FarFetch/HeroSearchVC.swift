@@ -36,26 +36,28 @@ class HeroSearchVC: UIViewController {
     
     // MARK: - Actions
     @IBAction func search(_ sender: UIButton) {
+    
+        guard let heroName = heroNameTextFld.text else { return }
+        guard heroName.count > 0 else { return }
+
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        DispatchQueue.global(qos: .background).async {
+        NetworkHelper.shared.fetchHero(heroName, success: { (data) in
+            print(data.count)
             
-            sleep(1)
-            
-            DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
-                let hero1 = Hero(id: 1111, name: "Pajamen", description: "sadfdfs", modified: "dsdfsdf", thumbnail: nil)
-                
-                let hero2 = Hero(id: 2222, name: "Pajamen 2", description: "sadfdfs", modified: "dsdfsdf", thumbnail: nil)
-                
-                self.delegate?.searchCompleteWith(heroes: [hero1, hero2])
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
-        
-        //API CALL
-        //DelegateCallBack
-        //Pop
+            ParserHelper.shared.parseHeroList(fromData: data, success: { (heroes) in
+                self.delegate?.searchCompleteWith(heroes: heroes)
+                DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }, isParsingAFail: { (isParseFail) in
+                print(isParseFail)
+                //.. Alert
+            })
+        }, isHeroSearchFailed: { (isFail) in
+            print(isFail)
+            // Alert..
+        })
     }
 }

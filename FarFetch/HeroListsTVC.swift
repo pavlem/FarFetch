@@ -31,7 +31,7 @@ struct Hero: Decodable {
     let name: String?
     let description: String?
     let modified: String?
-    let thumbnail: Thumbnail?
+//    let thumbnail: Thumbnail?
 }
 
 struct Thumbnail: Decodable {
@@ -179,8 +179,12 @@ extension HeroListsTVC: HeroSearchVCDelegate {
             self.isSearchMode = true
             self.heroList.removeAll()
             self.heroList = heroesLocal
-            self.tableView.reloadData()
-            tableView.setContentOffset(.zero, animated: true)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.tableView.setContentOffset(.zero, animated: true)
+            }
+            
         }
     }
 }
