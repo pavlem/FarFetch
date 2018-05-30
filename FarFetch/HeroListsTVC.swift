@@ -41,30 +41,52 @@ struct Thumbnail: Decodable {
 
 class HeroListsTVC: FfTVC {
     
+    // MARK: - API
     var heroList = [Hero]()
     
+    // MARK: - Properties
     private var isLoadingMore = false // flag
-    
+    private var isSearchMode = false
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchHeroList()
         setNavBar()
+        fetchHeroList {}
     }
     
     // MARK: - Helper
     func setNavBar() {
         navigationItem.title = "Heroes List"
+        addRefreshControl()
+    }
+    
+    func addRefreshControl() {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(refreshHeroList), for: UIControlEvents.valueChanged)
+        refresh.backgroundColor = .white
+        refreshControl = refresh
+    }
+    
+    // MARK: - Actions
+    @objc func refreshHeroList() {
+        isSearchMode = false
+        NetworkHelper.shared.characterListOffset = 0
+        fetchHeroList {
+            DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
+            }
+        }
     }
     
     // MARK: Network Helper
-    func fetchHeroList() {
+    func fetchHeroList(success: @escaping () -> Void) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         DispatchQueue.global(qos: .background).async {
             NetworkHelper.shared.fetchHeroList(success: { (data) in
+                success()
                 ParserHelper.shared.parseHeroList(fromData: data, success: { (heroes) in
                     self.heroList = heroes
                     DispatchQueue.main.async {
@@ -87,6 +109,7 @@ class HeroListsTVC: FfTVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Segue.heroSearch {
             if let heroSearchVC = segue.destination as? HeroSearchVC {
+                self.isSearchMode = false
                 heroSearchVC.delegate = self
             }
         } else if segue.identifier == Segue.heroDetail {
@@ -112,7 +135,7 @@ extension HeroListsTVC {
         
         // Check if the last row number is the same as the last current data element
         if indexPath.row == self.heroList.count - 1 {
-            if !isLoadingMore {
+            if !isLoadingMore && !isSearchMode {
                 self.isLoadingMore = true
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
 
@@ -146,7 +169,6 @@ extension HeroListsTVC {
 extension HeroListsTVC: HeroListCellDelegate {
     func addToFavoritesAction(cell: HeroListCell) {
         let indexPath = tableView.indexPath(for: cell)
-        
         print(indexPath ?? "none")
     }
 }
@@ -154,18 +176,11 @@ extension HeroListsTVC: HeroListCellDelegate {
 extension HeroListsTVC: HeroSearchVCDelegate {
     func searchCompleteWith(heroes: [Hero]?) {
         if let heroesLocal = heroes {
+            self.isSearchMode = true
             self.heroList.removeAll()
             self.heroList = heroesLocal
             self.tableView.reloadData()
+            tableView.setContentOffset(.zero, animated: true)
         }
     }
 }
-
-
-
-
-
-
-
-
-
