@@ -40,7 +40,7 @@ class HeroSearchVC: UIViewController {
         
         DispatchQueue.global(qos: .background).async {
             
-            sleep(2)
+            sleep(1)
             
             DispatchQueue.main.async {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false

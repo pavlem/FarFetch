@@ -33,7 +33,6 @@ class NetworkHelper {
         let heroListURLString = URLStrings.baseEndpoint + URLStrings.characters
         
         fetchData(forUrlString: heroListURLString, success: { (data) in
-            //            let dataAsString = String(data: data, encoding: String.Encoding.utf8)
             success(data)
         }) { (isRequestFailed) in
             isHeroRetrivalFailed(isRequestFailed)
