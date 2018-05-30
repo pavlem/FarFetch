@@ -16,10 +16,10 @@ struct URLStrings {
     static let heroListMOC = "http://api.letsbuildthatapp.com/jsondecodable/courses_snake_case"
 }
 
-
-
-var privateKey = "ea827ee77a1eed8ca8c771ec5fc5af5b9e84886b"
-var publicKey = "d4ac801ec659832e8eaa74553f0a2d35"
+struct ApiKey {
+    static let `private` = "ea827ee77a1eed8ca8c771ec5fc5af5b9e84886b"
+    static let `public` = "d4ac801ec659832e8eaa74553f0a2d35"
+}
 
 class NetworkHelper {
     static let shared = NetworkHelper()
@@ -42,12 +42,11 @@ class NetworkHelper {
     func fetchData(forUrlString urlString: String, success: @escaping (Data) -> Void, isRequestFailed: @escaping (Bool) -> Void) {
     
         let ts = Date().timeIntervalSince1970.description
-        let hash = (ts + privateKey + publicKey).md5()
-        
+        let hash = (ts + ApiKey.private + ApiKey.public).md5()
         
         guard let url = URL(string: urlString) else { return }
         
-        let urlQ1 = URLQueryItem(name: "apikey", value: publicKey)
+        let urlQ1 = URLQueryItem(name: "apikey", value: ApiKey.public)
         let urlQ2 = URLQueryItem(name: "ts", value: ts)
         let urlQ3 = URLQueryItem(name: "hash", value: hash)
 //        let urlQ4 = URLQueryItem(name: "limit", value: "10")
