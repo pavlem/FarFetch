@@ -31,7 +31,7 @@ struct Hero: Decodable {
     let name: String?
     let description: String?
     let modified: String?
-//    let thumbnail: Thumbnail?
+    let thumbnail: Thumbnail?
 }
 
 struct Thumbnail: Decodable {
