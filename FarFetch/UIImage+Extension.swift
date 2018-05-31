@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 extension UIImage {
-     static var qustionMark: UIImage { return UIImage(named: "q")! }
+     static var placeHolder: UIImage { return UIImage(named: "q")! }
 }

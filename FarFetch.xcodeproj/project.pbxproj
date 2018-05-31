@@ -132,10 +132,10 @@
 				9EF214B320B96FBB001015AD /* ParserHelper.swift */,
 				9EF214B120B95DF6001015AD /* NetworkHelper.swift */,
 				9EF214AB20B95BAE001015AD /* HeroListsTVC.swift */,
-				9EE3C5B520C076C800D6DAF3 /* UIImage+Extension.swift */,
 				9EF214AF20B95D31001015AD /* HeroListCell.swift */,
 				9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */,
 				9EF214A920B95B1E001015AD /* FfTVC.swift */,
+				9EE3C5B520C076C800D6DAF3 /* UIImage+Extension.swift */,
 				9EF214A820B95AD8001015AD /* Resources */,
 			);
 			path = FarFetch;

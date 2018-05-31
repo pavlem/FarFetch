@@ -23,6 +23,8 @@ class HeroListCell: UITableViewCell {
         }
     }
     
+    var currentDataTask: URLSessionDataTask?
+    
     // MARK: - Outlets
     @IBOutlet weak var heroName: UILabel!
     @IBOutlet weak var heroImg: UIImageView!
@@ -42,14 +44,18 @@ class HeroListCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        heroImg.image = UIImage.qustionMark
+        heroImg.image = UIImage.placeHolder
         heroName.text = ""
-
+        if let currentImageDataTask = currentDataTask {
+            currentImageDataTask.cancel()
+        }
+        imgLoadingIndicator.stopAnimating()
+        imgLoadingIndicator.isHidden = true
     }
     
     // MARK: - Helper
     func setUI() {
-        heroImg.image = UIImage.qustionMark
+        heroImg.image = UIImage.placeHolder
         heroName.text = hero!.name
         
         if hero!.thumbnail != nil {
@@ -59,10 +65,11 @@ class HeroListCell: UITableViewCell {
             if let img = heroesImgsCache.object(forKey: (imgUrl as AnyObject)) as? UIImage {
                 heroImg.image = img
             } else {
-                heroImg.image = UIImage.qustionMark
+                heroImg.image = UIImage.placeHolder
                 imgLoadingIndicator.startAnimating()
                 self.imgLoadingIndicator.isHidden = false
-                URLSession.shared.dataTask(with: URL(string: imgUrl)!) { (data, resposne, err) in
+            
+                currentDataTask = URLSession.shared.dataTask(with: URL(string: imgUrl)!) { (data, resposne, err) in
                     if err != nil {
                         return
                     }
@@ -75,7 +82,9 @@ class HeroListCell: UITableViewCell {
                         self.imgLoadingIndicator.stopAnimating()
                         self.imgLoadingIndicator.isHidden = true
                     }
-                }.resume()
+                }
+                
+                currentDataTask!.resume()
             }
             
             print("==========")
