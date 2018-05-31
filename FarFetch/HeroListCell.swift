@@ -27,6 +27,7 @@ class HeroListCell: UITableViewCell {
     @IBOutlet weak var heroName: UILabel!
     @IBOutlet weak var heroImg: UIImageView!
     @IBOutlet weak var addToFavoritesBtn: UIButton!
+    @IBOutlet weak var imgLoadingIndicator: UIActivityIndicatorView!
     
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -40,17 +41,27 @@ class HeroListCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        heroImg.image = UIImage.qustionMark
+        heroName.text = ""
+
+    }
+    
     // MARK: - Helper
     func setUI() {
-        heroImg.image = nil
+        heroImg.image = UIImage.qustionMark
         heroName.text = hero!.name
         
         if hero!.thumbnail != nil {
             let imgUrl = hero!.thumbnail!.path! + "." + hero!.thumbnail!.extension!
+
             
             if let img = heroesImgsCache.object(forKey: (imgUrl as AnyObject)) as? UIImage {
                 heroImg.image = img
             } else {
+                heroImg.image = UIImage.qustionMark
+                imgLoadingIndicator.startAnimating()
+                self.imgLoadingIndicator.isHidden = false
                 URLSession.shared.dataTask(with: URL(string: imgUrl)!) { (data, resposne, err) in
                     if err != nil {
                         return
@@ -61,10 +72,16 @@ class HeroListCell: UITableViewCell {
                     heroesImgsCache.setObject(img!, forKey: imgUrl as AnyObject)
                     DispatchQueue.main.async {
                         self.heroImg.image = img
+                        self.imgLoadingIndicator.stopAnimating()
+                        self.imgLoadingIndicator.isHidden = true
                     }
                 }.resume()
             }
+            
+            print("==========")
             print(imgUrl)
+            print(hero!.name)
+            print("==========")
         }
     }
     

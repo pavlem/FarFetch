@@ -13,6 +13,7 @@
 		9EBBE27B20BDD57200FF135A /* HeroDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EBBE27A20BDD57200FF135A /* HeroDetail.storyboard */; };
 		9EBBE27D20BDD66A00FF135A /* HeroSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EBBE27C20BDD66A00FF135A /* HeroSearch.storyboard */; };
 		9EBBE27F20BDD72900FF135A /* HeroSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */; };
+		9EE3C5B620C076C900D6DAF3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE3C5B520C076C800D6DAF3 /* UIImage+Extension.swift */; };
 		9EF2147B20B95A95001015AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF2147A20B95A95001015AD /* AppDelegate.swift */; };
 		9EF2148220B95A96001015AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EF2148120B95A96001015AD /* Assets.xcassets */; };
 		9EF2148520B95A96001015AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EF2148320B95A96001015AD /* LaunchScreen.storyboard */; };
@@ -49,6 +50,7 @@
 		9EBBE27A20BDD57200FF135A /* HeroDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroDetail.storyboard; sourceTree = "<group>"; };
 		9EBBE27C20BDD66A00FF135A /* HeroSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroSearch.storyboard; sourceTree = "<group>"; };
 		9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSearchVC.swift; sourceTree = "<group>"; };
+		9EE3C5B520C076C800D6DAF3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		9EF2147720B95A95001015AD /* FarFetch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarFetch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EF2147A20B95A95001015AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EF2148120B95A96001015AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				9EF214B320B96FBB001015AD /* ParserHelper.swift */,
 				9EF214B120B95DF6001015AD /* NetworkHelper.swift */,
 				9EF214AB20B95BAE001015AD /* HeroListsTVC.swift */,
+				9EE3C5B520C076C800D6DAF3 /* UIImage+Extension.swift */,
 				9EF214AF20B95D31001015AD /* HeroListCell.swift */,
 				9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */,
 				9EF214A920B95B1E001015AD /* FfTVC.swift */,
@@ -324,6 +327,7 @@
 				9EF2147B20B95A95001015AD /* AppDelegate.swift in Sources */,
 				9EF214AA20B95B1E001015AD /* FfTVC.swift in Sources */,
 				9EBBE27F20BDD72900FF135A /* HeroSearchVC.swift in Sources */,
+				9EE3C5B620C076C900D6DAF3 /* UIImage+Extension.swift in Sources */,
 				9EF214B420B96FBB001015AD /* ParserHelper.swift in Sources */,
 				9EF214B220B95DF6001015AD /* NetworkHelper.swift in Sources */,
 				9EF214B020B95D31001015AD /* HeroListCell.swift in Sources */,

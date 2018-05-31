@@ -32,6 +32,9 @@
                                                 <constraint firstAttribute="height" constant="60" id="Wbe-Rm-e8g"/>
                                             </constraints>
                                         </imageView>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RB0-t9-CAW">
+                                            <rect key="frame" x="36" y="30" width="20" height="20"/>
+                                        </activityIndicatorView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFy-kQ-ksO">
                                             <rect key="frame" x="91" y="30" width="268" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -49,7 +52,9 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="aCA-Z2-Wrk" secondAttribute="trailing" constant="8" id="5fb-Tb-Q0D"/>
                                         <constraint firstItem="pAM-sN-gv7" firstAttribute="leading" secondItem="5s6-qf-EDX" secondAttribute="leading" constant="16" id="L1b-J3-UbG"/>
+                                        <constraint firstItem="RB0-t9-CAW" firstAttribute="centerY" secondItem="pAM-sN-gv7" secondAttribute="centerY" id="WYf-YT-OYH"/>
                                         <constraint firstItem="VFy-kQ-ksO" firstAttribute="leading" secondItem="pAM-sN-gv7" secondAttribute="trailing" constant="15" id="emI-vN-NmT"/>
+                                        <constraint firstItem="RB0-t9-CAW" firstAttribute="centerX" secondItem="pAM-sN-gv7" secondAttribute="centerX" id="en2-DU-3tm"/>
                                         <constraint firstItem="pAM-sN-gv7" firstAttribute="centerY" secondItem="5s6-qf-EDX" secondAttribute="centerY" id="n08-Sj-2V2"/>
                                         <constraint firstAttribute="trailing" secondItem="VFy-kQ-ksO" secondAttribute="trailing" constant="16" id="n0h-sM-VWJ"/>
                                         <constraint firstItem="VFy-kQ-ksO" firstAttribute="centerY" secondItem="5s6-qf-EDX" secondAttribute="centerY" id="olx-6n-n7z"/>
@@ -60,6 +65,7 @@
                                     <outlet property="addToFavoritesBtn" destination="aCA-Z2-Wrk" id="g6m-fZ-5GQ"/>
                                     <outlet property="heroImg" destination="pAM-sN-gv7" id="NLV-Xr-nn8"/>
                                     <outlet property="heroName" destination="VFy-kQ-ksO" id="Rjk-Og-7fW"/>
+                                    <outlet property="imgLoadingIndicator" destination="RB0-t9-CAW" id="7ri-1G-0sR"/>
                                     <segue destination="Fo4-xU-san" kind="show" identifier="HeroDetail_Segue" id="MY3-j2-UIU"/>
                                 </connections>
                             </tableViewCell>
