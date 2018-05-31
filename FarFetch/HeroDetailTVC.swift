@@ -16,7 +16,7 @@ class HeroDetailTVC: UITableViewController {
     // MARK: - Properties
     @IBOutlet weak var heroDetailSegment: UISegmentedControl!
     // Vars
-    let heroAppearance: [ComicItems]?
+//    var heroStuff: [Hero]?
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +34,12 @@ class HeroDetailTVC: UITableViewController {
     func fetchHero(forId id: String) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        NetworkHelper.shared.fetchHero(forId: id, success: { (data) in
+        NetworkHelper.shared.fetchHeroStuff(forId: id, success: { (data) in
             
-            ParserHelper.shared.parseHeroList(fromData: data, success: { (heroes) in
-                print(heroes)
+            let dataComics = data.dataComics
+            
+            ParserHelper.shared.parseHeroListStuff(fromData: dataComics, success: { (heroAppearance) in
+                print(heroAppearance)
             }, isParsingAFail: { (isFail) in
                 print(isFail)
             })

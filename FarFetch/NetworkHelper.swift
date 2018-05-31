@@ -67,6 +67,51 @@ class NetworkHelper {
         }
     }
     
+    func fetchHeroStuff(forId id: String, success: @escaping ((dataComics: Data, dataEvents: Data, dataSeries: Data, dataStories: Data)) -> Void, isHeroSearchFailed: @escaping (Bool) -> Void) {
+        
+        self.characterListOffset = 0
+        let baseUrlString = URLStrings.baseEndpoint + URLStrings.characters + "/" + id
+        let heroListURLComics = baseUrlString + "/comics"
+        let heroListURLEvents = baseUrlString + "/events"
+        let heroListURLSeries = baseUrlString + "/series"
+        let heroListURLStories = baseUrlString + "/stories"
+
+        let basicURLQueryItems = self.basicURLQueryItems()
+        
+        fetchData(forUrlString: heroListURLComics, urlQueryItems: basicURLQueryItems, success: { (dataComics) in
+            self.fetchData(forUrlString: heroListURLEvents, urlQueryItems: basicURLQueryItems, success: { (dataEvents) in
+                
+                self.fetchData(forUrlString: heroListURLSeries, urlQueryItems: basicURLQueryItems, success: { (dataSeries) in
+                    
+                    self.fetchData(forUrlString: heroListURLStories, urlQueryItems: basicURLQueryItems, success: { (dataStories) in
+                        
+                        //-------
+                        success((dataComics: dataComics, dataEvents: dataEvents, dataSeries: dataSeries, dataStories: dataStories))
+                        
+//                        success((dataComics, dataEvents, dataSeries, dataStories))
+                        //-------
+
+                        
+                    }, isRequestFailed: { (isRequestFailed) in
+                        isHeroSearchFailed(isRequestFailed)
+                    })
+                    
+                }, isRequestFailed: { (isRequestFailed) in
+                    isHeroSearchFailed(isRequestFailed)
+                })
+                
+            }, isRequestFailed: { (isRequestFailed) in
+                isHeroSearchFailed(isRequestFailed)
+            })
+            
+            
+            
+            
+        }) { (isRequestFailed) in
+            isHeroSearchFailed(isRequestFailed)
+        }
+    }
+    
     func fetchData(forUrlString urlString: String, urlQueryItems: [URLQueryItem]?, success: @escaping (Data) -> Void, isRequestFailed: @escaping (Bool) -> Void) {
 
         guard var url = URL(string: urlString) else { return }

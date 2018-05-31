@@ -28,6 +28,22 @@ class ParserHelper {
         }
     }
     
+    func parseHeroListStuff(fromData data: Data, success: @escaping ([HeroStuff]) -> Void, isParsingAFail: @escaping (Bool) -> Void) {
+        do {
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            let response = try decoder.decode(MarvelServerResponseForHeroStuff.self, from: data)
+            if let heroList = response.data?.results {
+                success(heroList)
+            } else {
+                isParsingAFail(true)
+            }
+        } catch let jsonErr {
+            print("Failed to decode:", jsonErr)
+            isParsingAFail(true)
+        }
+    }
+    
 //    func parseHeroDetail(fromData data: Data, success: @escaping ([Hero]) -> Void, isParsingAFail: @escaping (Bool) -> Void) {
 //        
 //    }
