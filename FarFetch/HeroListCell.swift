@@ -41,8 +41,31 @@ class HeroListCell: UITableViewCell {
     }
     
     // MARK: - Helper
-    func setUI(){
+    func setUI() {
+        heroImg.image = nil
         heroName.text = hero!.name
+        
+        if hero!.thumbnail != nil {
+            let imgUrl = hero!.thumbnail!.path! + "." + hero!.thumbnail!.extension!
+            
+            if let img = heroesImgsCache.object(forKey: (imgUrl as AnyObject)) as? UIImage {
+                heroImg.image = img
+            } else {
+                URLSession.shared.dataTask(with: URL(string: imgUrl)!) { (data, resposne, err) in
+                    if err != nil {
+                        return
+                    }
+                    
+                    let img = UIImage(data: data!)
+                    
+                    heroesImgsCache.setObject(img!, forKey: imgUrl as AnyObject)
+                    DispatchQueue.main.async {
+                        self.heroImg.image = img
+                    }
+                }.resume()
+            }
+            print(imgUrl)
+        }
     }
     
     // MARK: - Actions
