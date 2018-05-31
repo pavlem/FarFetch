@@ -16,9 +16,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Ymn-PV-DCS">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ALJ-kj-X8c">
+                                    <rect key="frame" x="8" y="0.0" width="359" height="29"/>
+                                    <segments>
+                                        <segment title="comics"/>
+                                        <segment title="events"/>
+                                        <segment title="stories"/>
+                                        <segment title="series"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="heroDetailAppearanceAction:" destination="9xV-tH-0Pq" eventType="valueChanged" id="HVG-Cu-CM4"/>
+                                    </connections>
+                                </segmentedControl>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="ALJ-kj-X8c" secondAttribute="trailing" constant="8" id="2DI-zI-d7a"/>
+                                <constraint firstItem="ALJ-kj-X8c" firstAttribute="leading" secondItem="Ymn-PV-DCS" secondAttribute="leading" constant="8" id="4bx-09-dgb"/>
+                                <constraint firstItem="ALJ-kj-X8c" firstAttribute="top" secondItem="Ymn-PV-DCS" secondAttribute="top" id="UoI-uV-Anr"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="9dp-Xs-wjD">
-                                <rect key="frame" x="0.0" y="28" width="375" height="79"/>
+                                <rect key="frame" x="0.0" y="76" width="375" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9dp-Xs-wjD" id="Pp6-cd-Arr">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="78.5"/>
@@ -31,6 +55,9 @@
                             <outlet property="delegate" destination="9xV-tH-0Pq" id="W3M-aw-Mtf"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="heroDetailSegment" destination="ALJ-kj-X8c" id="yua-9o-aTW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5E-NK-Tun" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

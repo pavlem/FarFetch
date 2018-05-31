@@ -13,6 +13,10 @@ class HeroDetailTVC: UITableViewController {
     // MARK: - API
     var hero: Hero?
 
+    // MARK: - Properties
+    @IBOutlet weak var heroDetailSegment: UISegmentedControl!
+    // Vars
+    let heroAppearance: [ComicItems]?
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +25,11 @@ class HeroDetailTVC: UITableViewController {
             fetchHero(forId: String(describing: heroId))
         }
     }
-
+    
+    // MARK: - Action
+    @IBAction func heroDetailAppearanceAction(_ sender: UISegmentedControl) {
+    }
+    
     // MARK: - Network
     func fetchHero(forId id: String) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
