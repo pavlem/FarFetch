@@ -32,7 +32,47 @@ struct Hero: Decodable {
     let description: String?
     let modified: String?
     let thumbnail: Thumbnail?
+    let resourceURI: String?
+    let comics: Comics?
+    let series: Comics?
+    let stories: Comics?
+    let events: Comics?
 }
+
+struct Comics: Decodable {
+    let available: Int?
+    let collectionURI: String?
+    let items: [ComicItems]?
+}
+
+struct Series: Decodable {
+    let available: Int?
+    let collectionURI: String?
+    let items: [ComicItems]?
+}
+
+struct Stories: Decodable {
+    let available: Int?
+    let collectionURI: String?
+    let items: [ComicItems]?
+}
+
+struct Events: Decodable {
+    let available: Int?
+    let collectionURI: String?
+    let items: [ComicItems]?
+}
+
+struct ComicItems: Decodable {
+    let resourceURI: String?
+    let name: String?
+}
+
+//"items": [
+//{
+//"resourceURI": "http://gateway.marvel.com/v1/public/comics/62304",
+//"name": "Spider-Man: 101 Ways to End the Clone Saga (1997) #1"
+//},
 
 struct Thumbnail: Decodable {
     let path: String?
@@ -60,7 +100,7 @@ class HeroListsTVC: FfTVC {
     
     // MARK: - Helper
     func setNavBar() {
-        navigationItem.title = "Heroes List"
+        navigationItem.title = "Hero.List".localized
         addRefreshControl()
     }
     
@@ -115,7 +155,12 @@ class HeroListsTVC: FfTVC {
                 heroSearchVC.delegate = self
             }
         } else if segue.identifier == Segue.heroDetail {
-            //..
+            
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let selectedRow = indexPath.row
+                let heroDetailTVC = segue.destination as! HeroDetailTVC
+                heroDetailTVC.hero = self.heroList[selectedRow]
+            }
         }
     }
 }
@@ -186,7 +231,6 @@ extension HeroListsTVC: HeroSearchVCDelegate {
                 self.tableView.reloadData()
                 self.tableView.setContentOffset(.zero, animated: true)
             }
-            
         }
     }
 }

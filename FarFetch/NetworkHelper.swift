@@ -47,9 +47,6 @@ class NetworkHelper {
         
         var urlQueryItems = basicURLQueryItems()
         urlQueryItems.insert(urlHeroNameItem, at: 0)
-//        urlQueryItems.append(urlHeroNameItem)
-        
-        
         
         fetchData(forUrlString: heroListURLString, urlQueryItems: urlQueryItems, success: { (data) in
             success(data)
@@ -58,6 +55,18 @@ class NetworkHelper {
         }
     }
 
+    func fetchHero(forId id: String, success: @escaping (Data) -> Void, isHeroSearchFailed: @escaping (Bool) -> Void) {
+        
+        self.characterListOffset = 0
+        let heroListURLString = URLStrings.baseEndpoint + URLStrings.characters + "/" + id
+        
+        fetchData(forUrlString: heroListURLString, urlQueryItems: basicURLQueryItems(), success: { (data) in
+            success(data)
+        }) { (isRequestFailed) in
+            isHeroSearchFailed(isRequestFailed)
+        }
+    }
+    
     func fetchData(forUrlString urlString: String, urlQueryItems: [URLQueryItem]?, success: @escaping (Data) -> Void, isRequestFailed: @escaping (Bool) -> Void) {
 
         guard var url = URL(string: urlString) else { return }

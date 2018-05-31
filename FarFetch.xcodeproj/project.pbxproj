@@ -13,6 +13,9 @@
 		9EBBE27B20BDD57200FF135A /* HeroDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EBBE27A20BDD57200FF135A /* HeroDetail.storyboard */; };
 		9EBBE27D20BDD66A00FF135A /* HeroSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EBBE27C20BDD66A00FF135A /* HeroSearch.storyboard */; };
 		9EBBE27F20BDD72900FF135A /* HeroSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */; };
+		9EE1D7D420C07EFC00BEEA3A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1D7D320C07EFC00BEEA3A /* String+Extension.swift */; };
+		9EE1D7D820C07FAC00BEEA3A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1D7DA20C07FAC00BEEA3A /* Localizable.strings */; };
+		9EE1D7DD20C0828400BEEA3A /* HeroDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1D7DC20C0828400BEEA3A /* HeroDetailTVC.swift */; };
 		9EE3C5B620C076C900D6DAF3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE3C5B520C076C800D6DAF3 /* UIImage+Extension.swift */; };
 		9EF2147B20B95A95001015AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF2147A20B95A95001015AD /* AppDelegate.swift */; };
 		9EF2148220B95A96001015AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EF2148120B95A96001015AD /* Assets.xcassets */; };
@@ -50,6 +53,11 @@
 		9EBBE27A20BDD57200FF135A /* HeroDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroDetail.storyboard; sourceTree = "<group>"; };
 		9EBBE27C20BDD66A00FF135A /* HeroSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroSearch.storyboard; sourceTree = "<group>"; };
 		9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSearchVC.swift; sourceTree = "<group>"; };
+		9EE1D7D320C07EFC00BEEA3A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		9EE1D7D520C07F6200BEEA3A /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		9EE1D7D920C07FAC00BEEA3A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9EE1D7DB20C07FAE00BEEA3A /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		9EE1D7DC20C0828400BEEA3A /* HeroDetailTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailTVC.swift; sourceTree = "<group>"; };
 		9EE3C5B520C076C800D6DAF3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		9EF2147720B95A95001015AD /* FarFetch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarFetch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EF2147A20B95A95001015AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,10 +140,12 @@
 				9EF214B320B96FBB001015AD /* ParserHelper.swift */,
 				9EF214B120B95DF6001015AD /* NetworkHelper.swift */,
 				9EF214AB20B95BAE001015AD /* HeroListsTVC.swift */,
+				9EE1D7DC20C0828400BEEA3A /* HeroDetailTVC.swift */,
 				9EF214AF20B95D31001015AD /* HeroListCell.swift */,
 				9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */,
 				9EF214A920B95B1E001015AD /* FfTVC.swift */,
 				9EE3C5B520C076C800D6DAF3 /* UIImage+Extension.swift */,
+				9EE1D7D320C07EFC00BEEA3A /* String+Extension.swift */,
 				9EF214A820B95AD8001015AD /* Resources */,
 			);
 			path = FarFetch;
@@ -162,6 +172,7 @@
 		9EF214A820B95AD8001015AD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9EE1D7DA20C07FAC00BEEA3A /* Localizable.strings */,
 				9E51B21F20BAAD480083C974 /* HeroList.storyboard */,
 				9EBBE27A20BDD57200FF135A /* HeroDetail.storyboard */,
 				9EBBE27C20BDD66A00FF135A /* HeroSearch.storyboard */,
@@ -259,6 +270,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-PT",
 			);
 			mainGroup = 9EF2146E20B95A95001015AD;
 			productRefGroup = 9EF2147820B95A95001015AD /* Products */;
@@ -278,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EBBE27D20BDD66A00FF135A /* HeroSearch.storyboard in Resources */,
+				9EE1D7D820C07FAC00BEEA3A /* Localizable.strings in Resources */,
 				9E51B22020BAAD480083C974 /* HeroList.storyboard in Resources */,
 				9EBBE27B20BDD57200FF135A /* HeroDetail.storyboard in Resources */,
 				9EF2148520B95A96001015AD /* LaunchScreen.storyboard in Resources */,
@@ -329,9 +342,11 @@
 				9EBBE27F20BDD72900FF135A /* HeroSearchVC.swift in Sources */,
 				9EE3C5B620C076C900D6DAF3 /* UIImage+Extension.swift in Sources */,
 				9EF214B420B96FBB001015AD /* ParserHelper.swift in Sources */,
+				9EE1D7DD20C0828400BEEA3A /* HeroDetailTVC.swift in Sources */,
 				9EF214B220B95DF6001015AD /* NetworkHelper.swift in Sources */,
 				9EF214B020B95D31001015AD /* HeroListCell.swift in Sources */,
 				9EF214AC20B95BAE001015AD /* HeroListsTVC.swift in Sources */,
+				9EE1D7D420C07EFC00BEEA3A /* String+Extension.swift in Sources */,
 				9E51B21E20BAACB30083C974 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,10 +383,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9EE1D7DA20C07FAC00BEEA3A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9EE1D7D920C07FAC00BEEA3A /* en */,
+				9EE1D7DB20C07FAE00BEEA3A /* pt-PT */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		9EF2148320B95A96001015AD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				9EF2148420B95A96001015AD /* Base */,
+				9EE1D7D520C07F6200BEEA3A /* pt-PT */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -383,6 +408,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -443,6 +469,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -498,11 +525,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PN4TAKFT47;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = FarFetch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -519,11 +548,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PN4TAKFT47;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = FarFetch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
