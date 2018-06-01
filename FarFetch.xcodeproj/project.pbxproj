@@ -16,6 +16,7 @@
 		9EE1D7D420C07EFC00BEEA3A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1D7D320C07EFC00BEEA3A /* String+Extension.swift */; };
 		9EE1D7D820C07FAC00BEEA3A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1D7DA20C07FAC00BEEA3A /* Localizable.strings */; };
 		9EE1D7DD20C0828400BEEA3A /* HeroDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1D7DC20C0828400BEEA3A /* HeroDetailTVC.swift */; };
+		9EE1D7DF20C1878300BEEA3A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1D7DE20C1878300BEEA3A /* Models.swift */; };
 		9EE3C5B620C076C900D6DAF3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE3C5B520C076C800D6DAF3 /* UIImage+Extension.swift */; };
 		9EF2147B20B95A95001015AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF2147A20B95A95001015AD /* AppDelegate.swift */; };
 		9EF2148220B95A96001015AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EF2148120B95A96001015AD /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		9EE1D7D920C07FAC00BEEA3A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9EE1D7DB20C07FAE00BEEA3A /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9EE1D7DC20C0828400BEEA3A /* HeroDetailTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailTVC.swift; sourceTree = "<group>"; };
+		9EE1D7DE20C1878300BEEA3A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		9EE3C5B520C076C800D6DAF3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		9EF2147720B95A95001015AD /* FarFetch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarFetch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EF2147A20B95A95001015AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				9EF214B120B95DF6001015AD /* NetworkHelper.swift */,
 				9EF214AB20B95BAE001015AD /* HeroListsTVC.swift */,
 				9EE1D7DC20C0828400BEEA3A /* HeroDetailTVC.swift */,
+				9EE1D7DE20C1878300BEEA3A /* Models.swift */,
 				9EF214AF20B95D31001015AD /* HeroListCell.swift */,
 				9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */,
 				9EF214A920B95B1E001015AD /* FfTVC.swift */,
@@ -340,6 +343,7 @@
 				9EF2147B20B95A95001015AD /* AppDelegate.swift in Sources */,
 				9EF214AA20B95B1E001015AD /* FfTVC.swift in Sources */,
 				9EBBE27F20BDD72900FF135A /* HeroSearchVC.swift in Sources */,
+				9EE1D7DF20C1878300BEEA3A /* Models.swift in Sources */,
 				9EE3C5B620C076C900D6DAF3 /* UIImage+Extension.swift in Sources */,
 				9EF214B420B96FBB001015AD /* ParserHelper.swift in Sources */,
 				9EE1D7DD20C0828400BEEA3A /* HeroDetailTVC.swift in Sources */,
