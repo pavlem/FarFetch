@@ -34,7 +34,9 @@ class HeroListCell: UITableViewCell {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        self.heroImg.layer.cornerRadius = heroImg.bounds.width / 2
+        heroImg.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
