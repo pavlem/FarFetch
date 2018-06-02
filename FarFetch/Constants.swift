@@ -10,6 +10,7 @@ import Foundation
 
 struct CellID {
     static let heroList = "heroListCell_ID"
+    static let heroDetail = "heroDetail_ID"
 }
 
 struct Segue {
