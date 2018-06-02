@@ -76,14 +76,16 @@ class NetworkHelper {
         let heroListURLSeries = baseUrlString + "/series"
         let heroListURLStories = baseUrlString + "/stories"
 
-        let basicURLQueryItems = self.basicURLQueryItems()
+        var urlQueryItems = self.basicURLQueryItems()
+        let limitQueryItem = URLQueryItem(name: "limit", value: "3")
+        urlQueryItems.append(limitQueryItem)
         
-        fetchData(forUrlString: heroListURLComics, urlQueryItems: basicURLQueryItems, success: { (dataComics) in
-            self.fetchData(forUrlString: heroListURLEvents, urlQueryItems: basicURLQueryItems, success: { (dataEvents) in
+        fetchData(forUrlString: heroListURLComics, urlQueryItems: urlQueryItems, success: { (dataComics) in
+            self.fetchData(forUrlString: heroListURLEvents, urlQueryItems: urlQueryItems, success: { (dataEvents) in
                 
-                self.fetchData(forUrlString: heroListURLSeries, urlQueryItems: basicURLQueryItems, success: { (dataSeries) in
+                self.fetchData(forUrlString: heroListURLSeries, urlQueryItems: urlQueryItems, success: { (dataSeries) in
                     
-                    self.fetchData(forUrlString: heroListURLStories, urlQueryItems: basicURLQueryItems, success: { (dataStories) in
+                    self.fetchData(forUrlString: heroListURLStories, urlQueryItems: urlQueryItems, success: { (dataStories) in
                         
                         // Return a TUPLE of data info's
                         success((dataComics: dataComics, dataEvents: dataEvents, dataSeries: dataSeries, dataStories: dataStories))
