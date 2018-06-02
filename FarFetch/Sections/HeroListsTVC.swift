@@ -12,16 +12,17 @@ var heroesImgsCache = NSCache<AnyObject, AnyObject>()
 
 class HeroListsTVC: FfTVC {
    
-    
     // MARK: - API
     var heroList = [Hero]()
-    
+    var isSearchMode = false
+
     // MARK: - Properties
     // Vars
     private var isLoadingMore = false // flag
-    private var isSearchMode = false
     // Outlets
     @IBOutlet weak var searchBarBtn: UIBarButtonItem!
+    // Constants
+    let cellHeight = CGFloat(80)
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -29,7 +30,12 @@ class HeroListsTVC: FfTVC {
         
         setNavBar()
         setUIComponents()
-        fetchHeroList {}
+        if !isSearchMode {
+            fetchHeroList {}
+            addRefreshControl()
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
     }
     
     // MARK: - Helper
@@ -39,7 +45,7 @@ class HeroListsTVC: FfTVC {
 
     func setNavBar() {
         navigationItem.title = "heroList".localized
-        addRefreshControl()
+        
     }
     
     func addRefreshControl() {
@@ -110,7 +116,7 @@ extension HeroListsTVC {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return cellHeight
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -145,7 +151,6 @@ extension HeroListsTVC {
                     })
                 }
             }
-            print("=====")
         }
         return cell
     }
@@ -158,17 +163,12 @@ extension HeroListsTVC: HeroListCellDelegate {
     }
 }
 
-extension HeroListsTVC: HeroSearchVCDelegate {
-    func searchCompleteWith(heroes: [Hero]?) {
-        if let heroesLocal = heroes {
-            self.isSearchMode = true
-            self.heroList.removeAll()
-            self.heroList = heroesLocal
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.tableView.setContentOffset(.zero, animated: true)
-            }
-        }
-    }
-}
+//extension HeroListsTVC: HeroSearchVCDelegate {
+//    func searchCompleteWith(heroes: [Hero]?) {
+//        if let heroesLocal = heroes {
+//            self.isSearchMode = true
+//            self.heroList.removeAll()
+//            self.heroList = heroesLocal
+//        }
+//    }
+//}

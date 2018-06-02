@@ -48,11 +48,15 @@ class HeroSearchVC: UIViewController {
             print(data.count)
             
             ParserHelper.shared.parseHeroList(fromData: data, success: { (heroes) in
-                self.delegate?.searchCompleteWith(heroes: heroes)
                 DispatchQueue.main.async {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                    self.navigationController?.popViewController(animated: true)
+                    let heroListSB = UIStoryboard.heroList
+                    let heroListVC = heroListSB.instantiateViewController(withIdentifier: ViewControllerID.heroList) as! HeroListsTVC
+                    heroListVC.isSearchMode = true
+                    heroListVC.heroList = heroes
+                    self.navigationController?.show(heroListVC, sender: self)
                 }
+                
             }, isParsingAFail: { (isParseFail) in
                 print(isParseFail)
                 //.. Alert

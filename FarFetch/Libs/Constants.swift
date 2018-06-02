@@ -18,7 +18,7 @@ struct Segue {
     static let heroDetail = "HeroDetail_Segue"
 }
 
-struct StoryboardID {
+struct ViewControllerID {
     static let heroList = "HeroListTVC_ID"
     static let heroDetail = "HeroDetailTVC_ID"
     static let heroSearch = "HeroSearchTVC_ID"

@@ -10,6 +10,7 @@
 		9E51B21E20BAACB30083C974 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E51B21D20BAACB30083C974 /* Constants.swift */; };
 		9E51B22020BAAD480083C974 /* HeroList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E51B21F20BAAD480083C974 /* HeroList.storyboard */; };
 		9E9C67EE20C29D130018F569 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E51B21A20B9C8D60083C974 /* CryptoSwift.framework */; };
+		9E9C67F020C2B7060018F569 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C67EF20C2B7060018F569 /* UIStoryboard+Extension.swift */; };
 		9EBBE27B20BDD57200FF135A /* HeroDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EBBE27A20BDD57200FF135A /* HeroDetail.storyboard */; };
 		9EBBE27D20BDD66A00FF135A /* HeroSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EBBE27C20BDD66A00FF135A /* HeroSearch.storyboard */; };
 		9EBBE27F20BDD72900FF135A /* HeroSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */; };
@@ -51,6 +52,7 @@
 		9E51B21A20B9C8D60083C974 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
 		9E51B21D20BAACB30083C974 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9E51B21F20BAAD480083C974 /* HeroList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroList.storyboard; sourceTree = "<group>"; };
+		9E9C67EF20C2B7060018F569 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		9EBBE27A20BDD57200FF135A /* HeroDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroDetail.storyboard; sourceTree = "<group>"; };
 		9EBBE27C20BDD66A00FF135A /* HeroSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroSearch.storyboard; sourceTree = "<group>"; };
 		9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSearchVC.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				9EF214B120B95DF6001015AD /* NetworkHelper.swift */,
 				9EE3C5B520C076C800D6DAF3 /* UIImage+Extension.swift */,
 				9EE1D7D320C07EFC00BEEA3A /* String+Extension.swift */,
+				9E9C67EF20C2B7060018F569 /* UIStoryboard+Extension.swift */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				9EBBE27F20BDD72900FF135A /* HeroSearchVC.swift in Sources */,
 				9EE1D7DF20C1878300BEEA3A /* Models.swift in Sources */,
 				9EE3C5B620C076C900D6DAF3 /* UIImage+Extension.swift in Sources */,
+				9E9C67F020C2B7060018F569 /* UIStoryboard+Extension.swift in Sources */,
 				9EF214B420B96FBB001015AD /* ParserHelper.swift in Sources */,
 				9EE1D7DD20C0828400BEEA3A /* HeroDetailTVC.swift in Sources */,
 				9EF214B220B95DF6001015AD /* NetworkHelper.swift in Sources */,
