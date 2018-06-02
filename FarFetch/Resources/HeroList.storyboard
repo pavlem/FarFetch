@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -77,12 +76,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="vVI-t6-unR">
-                        <barButtonItem key="rightBarButtonItem" title="Search" id="XEF-7K-xev">
-                            <connections>
-                                <segue destination="5OT-xM-kk2" kind="show" identifier="HeroSearch_Segue" id="DVZ-0Q-hef"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="XEF-7K-xev"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBarBtn" destination="XEF-7K-xev" id="7WH-vY-Z8h"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Osm-2g-Ln0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

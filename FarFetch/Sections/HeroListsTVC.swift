@@ -11,23 +11,32 @@ import UIKit
 var heroesImgsCache = NSCache<AnyObject, AnyObject>()
 
 class HeroListsTVC: FfTVC {
+   
     
     // MARK: - API
     var heroList = [Hero]()
     
     // MARK: - Properties
+    // Vars
     private var isLoadingMore = false // flag
     private var isSearchMode = false
+    // Outlets
+    @IBOutlet weak var searchBarBtn: UIBarButtonItem!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setNavBar()
+        setUIComponents()
         fetchHeroList {}
     }
     
     // MARK: - Helper
+    func setUIComponents() {
+        searchBarBtn.title = "search"
+    }
+
     func setNavBar() {
         navigationItem.title = "heroList".localized
         addRefreshControl()

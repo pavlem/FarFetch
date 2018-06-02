@@ -6,8 +6,15 @@
   Copyright © 2018 Pavle Mijatovic. All rights reserved.
 */
 
+// MARK: - Hero List
+"search" = "Search"
 "heroList" = "Hero List";
+
+// MARK: - Hero Detail
 "heroDetailComics" = "Comics";
 "heroDetailEvents" = "Events";
 "heroDetailStories" = "Stories";
 "heroDetailSeries" = "Series";
+
+// MARK: - Hero Search
+
