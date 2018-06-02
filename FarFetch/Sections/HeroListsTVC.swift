@@ -94,9 +94,9 @@ class HeroListsTVC: FfTVC {
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Segue.heroSearch {
-            if let heroSearchVC = segue.destination as? HeroSearchVC {
+            if let _ = segue.destination as? HeroSearchVC {
                 self.isSearchMode = false
-                heroSearchVC.delegate = self
+//                heroSearchVC.delegate = self
             }
         } else if segue.identifier == Segue.heroDetail {
             

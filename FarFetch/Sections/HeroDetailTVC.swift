@@ -43,6 +43,13 @@ class HeroDetailTVC: FfTVC {
         fetchHeroData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        NetworkHelper.shared.cancelAllURLSessionTasks()
+    }
+    
     // MARK: - Helper
     func setUIComponents() {
         heroDetailSegment.setTitle("heroDetailComics".localized, forSegmentAt: HeroDetail.comics.rawValue)
@@ -103,7 +110,7 @@ class HeroDetailTVC: FfTVC {
             
         }) { (isFetchFailed) in
             DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
             print(isFetchFailed)
         }

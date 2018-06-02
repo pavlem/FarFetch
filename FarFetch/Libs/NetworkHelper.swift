@@ -85,12 +85,8 @@ class NetworkHelper {
                     
                     self.fetchData(forUrlString: heroListURLStories, urlQueryItems: basicURLQueryItems, success: { (dataStories) in
                         
-                        //-------
+                        // Return a TUPLE of data info's
                         success((dataComics: dataComics, dataEvents: dataEvents, dataSeries: dataSeries, dataStories: dataStories))
-                        
-//                        success((dataComics, dataEvents, dataSeries, dataStories))
-                        //-------
-
                         
                     }, isRequestFailed: { (isRequestFailed) in
                         isHeroSearchFailed(isRequestFailed)
@@ -160,5 +156,13 @@ class NetworkHelper {
         }
         urlComponents!.queryItems!.append(contentsOf: newParams);
         return urlComponents?.url;
+    }
+    
+    func cancelAllURLSessionTasks() {
+        URLSession.shared.getAllTasks { (urlSessionDataTasks) in
+            for task in urlSessionDataTasks {
+                task.cancel()
+            }
+        }
     }
 }
