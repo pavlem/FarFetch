@@ -20,7 +20,7 @@ class HeroSearchVC: UIViewController {
     // MARK: - Properties
     // Outlets
     @IBOutlet weak var heroNameTextFld: UITextField!
-    @IBOutlet weak var searchLbl: UIButton!
+    @IBOutlet weak var searchBtn: UIButton!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -31,7 +31,8 @@ class HeroSearchVC: UIViewController {
     
     // MARK: - Helper
     func setUIComponents() {
-        //...
+        heroNameTextFld.placeholder = "heroSearchPlaceholder".localized
+        searchBtn.setTitle("search".localized, for: .normal)
     }
     
     // MARK: - Actions

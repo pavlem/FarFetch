@@ -7,7 +7,7 @@
 */
 
 // MARK: - Hero List
-"search" = "Search"
+"search" = "Search";
 "heroList" = "Hero List";
 
 // MARK: - Hero Detail
@@ -17,4 +17,4 @@
 "heroDetailSeries" = "Series";
 
 // MARK: - Hero Search
-
+"heroSearchPlaceholder" = "Type Hero Name";
