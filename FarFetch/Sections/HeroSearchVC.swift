@@ -33,6 +33,7 @@ class HeroSearchVC: UIViewController {
     func setUIComponents() {
         heroNameTextFld.placeholder = "heroSearchPlaceholder".localized
         searchBtn.setTitle("search".localized, for: .normal)
+        navigationItem.title = "heroSearchNavTitle".localized
     }
     
     // MARK: - Actions

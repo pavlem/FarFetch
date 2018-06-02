@@ -34,7 +34,7 @@ class HeroListsTVC: FfTVC {
     
     // MARK: - Helper
     func setUIComponents() {
-        searchBarBtn.title = "search"
+        searchBarBtn.title = "search".localized
     }
 
     func setNavBar() {

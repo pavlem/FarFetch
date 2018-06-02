@@ -9,6 +9,8 @@
 // MARK: - Hero List
 "search" = "Search";
 "heroList" = "Hero List";
+"heroListAdd" = "Add";
+"heroListRemove" = "Remove";
 
 // MARK: - Hero Detail
 "heroDetailComics" = "Comics";
@@ -18,3 +20,4 @@
 
 // MARK: - Hero Search
 "heroSearchPlaceholder" = "Type Hero Name";
+"heroSearchNavTitle" = "Search for a hero";
