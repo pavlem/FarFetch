@@ -89,7 +89,7 @@ class HeroListCell: UITableViewCell {
             
             print("==========")
             print(imgUrl)
-            print(hero!.name)
+            print(hero!.name ?? "")
             print("==========")
         }
     }

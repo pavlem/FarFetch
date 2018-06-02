@@ -103,10 +103,7 @@ class NetworkHelper {
             }, isRequestFailed: { (isRequestFailed) in
                 isHeroSearchFailed(isRequestFailed)
             })
-            
-            
-            
-            
+
         }) { (isRequestFailed) in
             isHeroSearchFailed(isRequestFailed)
         }

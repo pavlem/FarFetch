@@ -6,4 +6,8 @@
   Copyright © 2018 Pavle Mijatovic. All rights reserved.
 */
 
-"Hero.List" = "Hero List";
+"heroList" = "Hero List";
+"heroDetailComics" = "Comics";
+"heroDetailEvents" = "Events";
+"heroDetailStories" = "Stories";
+"heroDetailSeries" = "Series";

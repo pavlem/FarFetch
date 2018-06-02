@@ -29,7 +29,7 @@ class HeroListsTVC: FfTVC {
     
     // MARK: - Helper
     func setNavBar() {
-        navigationItem.title = "Hero.List".localized
+        navigationItem.title = "heroList".localized
         addRefreshControl()
     }
     

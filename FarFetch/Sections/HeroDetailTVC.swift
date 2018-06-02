@@ -39,13 +39,17 @@ class HeroDetailTVC: FfTVC {
         super.viewDidLoad()
         
         setNavBar()
-        
-        if let heroId = hero?.id {
-            fetchHero(forId: String(describing: heroId))
-        }
+        setUIComponents()
+        fetchHeroData()
     }
     
     // MARK: - Helper
+    func setUIComponents() {
+        heroDetailSegment.setTitle("heroDetailComics".localized, forSegmentAt: HeroDetail.comics.rawValue)
+        heroDetailSegment.setTitle("heroDetailEvents".localized, forSegmentAt: HeroDetail.events.rawValue)
+        heroDetailSegment.setTitle("heroDetailStories".localized, forSegmentAt: HeroDetail.stories.rawValue)
+        heroDetailSegment.setTitle("heroDetailSeries".localized, forSegmentAt: HeroDetail.series.rawValue)
+    }
     func setNavBar() {
         navigationItem.title = hero?.name ?? ""
     }
@@ -116,5 +120,9 @@ class HeroDetailTVC: FfTVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  heroesStuff.count
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
