@@ -113,6 +113,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9EE1D7E020C2998100BEEA3A /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				9EF214A920B95B1E001015AD /* FfTVC.swift */,
+				9E51B21D20BAACB30083C974 /* Constants.swift */,
+				9EF214B320B96FBB001015AD /* ParserHelper.swift */,
+				9EF214B120B95DF6001015AD /* NetworkHelper.swift */,
+				9EE3C5B520C076C800D6DAF3 /* UIImage+Extension.swift */,
+				9EE1D7D320C07EFC00BEEA3A /* String+Extension.swift */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		9EE1D7E120C299D000BEEA3A /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */,
+				9EF214AB20B95BAE001015AD /* HeroListsTVC.swift */,
+				9EE1D7DC20C0828400BEEA3A /* HeroDetailTVC.swift */,
+				9EF214AF20B95D31001015AD /* HeroListCell.swift */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
 		9EF2146E20B95A95001015AD = {
 			isa = PBXGroup;
 			children = (
@@ -137,19 +161,11 @@
 		9EF2147920B95A95001015AD /* FarFetch */ = {
 			isa = PBXGroup;
 			children = (
-				9EF2148620B95A96001015AD /* Info.plist */,
-				9E51B21D20BAACB30083C974 /* Constants.swift */,
-				9EF214B320B96FBB001015AD /* ParserHelper.swift */,
-				9EF214B120B95DF6001015AD /* NetworkHelper.swift */,
-				9EF214AB20B95BAE001015AD /* HeroListsTVC.swift */,
-				9EE1D7DC20C0828400BEEA3A /* HeroDetailTVC.swift */,
-				9EE1D7DE20C1878300BEEA3A /* Models.swift */,
-				9EF214AF20B95D31001015AD /* HeroListCell.swift */,
-				9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */,
-				9EF214A920B95B1E001015AD /* FfTVC.swift */,
-				9EE3C5B520C076C800D6DAF3 /* UIImage+Extension.swift */,
-				9EE1D7D320C07EFC00BEEA3A /* String+Extension.swift */,
+				9EE1D7E120C299D000BEEA3A /* Sections */,
 				9EF214A820B95AD8001015AD /* Resources */,
+				9EE1D7E020C2998100BEEA3A /* Libs */,
+				9EF2148620B95A96001015AD /* Info.plist */,
+				9EE1D7DE20C1878300BEEA3A /* Models.swift */,
 			);
 			path = FarFetch;
 			sourceTree = "<group>";
@@ -325,9 +341,13 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CryptoSwift.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Realm.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RealmSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
