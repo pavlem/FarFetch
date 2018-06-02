@@ -23,86 +23,106 @@ class HeroDetailTVC: UITableViewController {
     // MARK: - Properties
     @IBOutlet weak var heroDetailSegment: UISegmentedControl!
     // Vars
-    var heroesStuff: [HeroStuff]?
+    var heroesStuff = [HeroStuff]() {
+        didSet {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            tableView.reloadData()
+        }
+    }
+    var heroesComics: [HeroStuff]?
+    var heroesEvents: [HeroStuff]?
+    var heroesStories: [HeroStuff]?
+    var heroesSeries: [HeroStuff]?
+    // Constants
+    let estimatedRowHeight = CGFloat(80)
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        if let heroId = hero?.id {
-        //            fetchHero(forId: String(describing: heroId))
-        //        }
+        setNavBar()
+        setTableView()
+        
+        if let heroId = hero?.id {
+            fetchHero(forId: String(describing: heroId))
+        }
+    }
+    
+    // MARK: - Helper
+    func setNavBar() {
+        navigationItem.title = hero?.name ?? ""
+    }
+    
+    func setTableView() {
+        tableView.estimatedRowHeight = estimatedRowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     // MARK: - Action
     @IBAction func heroDetailAppearanceAction(_ sender: UISegmentedControl) {
-        
         switch HeroDetail(rawValue: sender.selectedSegmentIndex)! {
         case .comics:
-            print("comics")
+            heroesStuff = heroesComics!
         case .events:
-            print("events")
+            heroesStuff = heroesEvents!
         case .stories:
-            print("stories")
+            heroesStuff = heroesStories!
         case .series:
-            print("series")
+            heroesStuff = heroesSeries!
         }
         print(sender.selectedSegmentIndex)
-
     }
     
     // MARK: - Network
+    func fetchHeroData() {
+        if let heroId = hero?.id {
+            fetchHero(forId: String(describing: heroId))
+        }
+    }
+    
     func fetchHero(forId id: String) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        //        NetworkHelper.shared.fetchHeroStuff(forId: id, success: { (data) in
-        
-        //            let dataComics = data.dataComics
-        //
-        //            let dataArr = [data.dataComics, data.dataEvents, data.dataSeries, data.dataStories]
-        //
-        //            var parsedHeroesStuff = [[HeroStuff]]()
-        //
-        //            for d in dataArr {
-        //                ParserHelper.shared.parseHeroListStuff(fromData: d, success: { (heroAppearance) in
-        //                    parsedHeroesStuff.append(heroAppearance)
-        //                }, isParsingAFail: { (isFail) in
-        //                    print(isFail)
-        //                })
-        //            }
-        //
-        //            let heroesComics = parsedHeroesStuff[0]
-        //            let heroesEvents = parsedHeroesStuff[1]
-        //            let heroesSeries = parsedHeroesStuff[2]
-        //            let heroesStories = parsedHeroesStuff[3]
-        //
-        //            self.heroesStuff = heroesComics
-        //            print("====")
-        //
-        //            DispatchQueue.main.async {
-        //                UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        //                self.tableView.reloadData()
-        //            }
-        //            print(data)
-        
-        //        }) { (isFetchFailed) in
-        //            DispatchQueue.main.async {
-        //                UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        //            }
-        //            print(isFetchFailed)
-        //        }
+        NetworkHelper.shared.fetchHeroStuff(forId: id, success: { (data) in
+            
+            let dataArr = [data.dataComics, data.dataEvents, data.dataSeries, data.dataStories]
+            var parsedHeroesStuff = [[HeroStuff]]()
+            
+            for data in dataArr {
+                ParserHelper.shared.parseHeroListStuff(fromData: data, success: { (heroAppearance) in
+                    parsedHeroesStuff.append(heroAppearance)
+                }, isParsingAFail: { (isFail) in
+                    print(isFail)
+                })
+            }
+            
+            self.heroesComics = parsedHeroesStuff[0]
+            self.heroesEvents = parsedHeroesStuff[1]
+            self.heroesSeries = parsedHeroesStuff[2]
+            self.heroesStories = parsedHeroesStuff[3]
+            
+            DispatchQueue.main.async {
+                self.heroesStuff = self.heroesComics!
+            }
+            
+        }) { (isFetchFailed) in
+            DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            }
+            print(isFetchFailed)
+        }
     }
     
     
     // MARK: - Table view data source
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: CellID.heroDetail, for: indexPath)
-        cell.textLabel?.text = "PAJA"
+        cell.textLabel?.text = heroesStuff[indexPath.row].title
+        cell.detailTextLabel?.text = heroesStuff[indexPath.row].description
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5 // heroesStuff?.count ?? 0
+        return  heroesStuff.count
     }
 }
