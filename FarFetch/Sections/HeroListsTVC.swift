@@ -7,20 +7,27 @@
 //
 
 import UIKit
+import RealmSwift
 
 var heroesImgsCache = NSCache<AnyObject, AnyObject>()
 
+enum AllOrFavorites: Int {
+    case all
+    case favorties
+}
+
 class HeroListsTVC: FfTVC {
-   
+    
     // MARK: - API
     var heroList = [Hero]()
     var isSearchMode = false
-
+    
     // MARK: - Properties
     // Vars
     private var isLoadingMore = false // flag
     // Outlets
     @IBOutlet weak var searchBarBtn: UIBarButtonItem!
+    @IBOutlet weak var allOrFavoritesCtrl: UISegmentedControl!
     // Constants
     let cellHeight = CGFloat(80)
     
@@ -42,7 +49,7 @@ class HeroListsTVC: FfTVC {
     func setUIComponents() {
         searchBarBtn.title = "search".localized
     }
-
+    
     func setNavBar() {
         navigationItem.title = "heroList".localized
         
@@ -63,6 +70,16 @@ class HeroListsTVC: FfTVC {
             DispatchQueue.main.async {
                 self.refreshControl?.endRefreshing()
             }
+        }
+    }
+    
+    @IBAction func allOrFavoritesAction(_ sender: UISegmentedControl) {
+        
+        switch AllOrFavorites(rawValue: sender.selectedSegmentIndex)! {
+        case .all:
+            print("all")
+        case .favorties:
+            print("favorties")
         }
     }
     
@@ -96,7 +113,7 @@ class HeroListsTVC: FfTVC {
         if segue.identifier == Segue.heroSearch {
             if let _ = segue.destination as? HeroSearchVC {
                 self.isSearchMode = false
-//                heroSearchVC.delegate = self
+                //                heroSearchVC.delegate = self
             }
         } else if segue.identifier == Segue.heroDetail {
             
@@ -129,7 +146,7 @@ extension HeroListsTVC {
             if !isLoadingMore && !isSearchMode {
                 self.isLoadingMore = true
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
-
+                
                 DispatchQueue.global(qos: .background).async {
                     
                     NetworkHelper.shared.fetchHeroList(success: { (data) in
@@ -158,8 +175,18 @@ extension HeroListsTVC {
 
 extension HeroListsTVC: HeroListCellDelegate {
     func addToFavoritesAction(cell: HeroListCell) {
-        let indexPath = tableView.indexPath(for: cell)
-        print(indexPath ?? "none")
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        
+        let heroRealm = HeroRealm()
+        heroRealm.setHeroRealm(with: heroList[indexPath.row])
+
+        if let heroR = realm.object(ofType: HeroRealm.self, forPrimaryKey: heroRealm.id) {
+            DbHelper.shared.delete(object: heroR)
+            cell.addToFavoritesBtn.setTitle("heroListAdd".localized, for: .normal)
+        } else {
+            DbHelper.shared.add(object: heroRealm)
+            cell.addToFavoritesBtn.setTitle("heroListRemove".localized, for: .normal)
+        }
     }
 }
 

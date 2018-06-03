@@ -13,6 +13,9 @@
 		9E9C67F020C2B7060018F569 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C67EF20C2B7060018F569 /* UIStoryboard+Extension.swift */; };
 		9E9C67F220C2C69B0018F569 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C67F120C2C69B0018F569 /* Realm.framework */; };
 		9E9C67F420C2C69D0018F569 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C67F320C2C69D0018F569 /* RealmSwift.framework */; };
+		9E9C67F620C2D6E70018F569 /* HeroRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C67F520C2D6E70018F569 /* HeroRealm.swift */; };
+		9E9C67F820C2D7FB0018F569 /* DbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C67F720C2D7FB0018F569 /* DbHelper.swift */; };
+		9E9C67FA20C3F7770018F569 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C67F920C3F7760018F569 /* FileHelper.swift */; };
 		9EBBE27B20BDD57200FF135A /* HeroDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EBBE27A20BDD57200FF135A /* HeroDetail.storyboard */; };
 		9EBBE27D20BDD66A00FF135A /* HeroSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EBBE27C20BDD66A00FF135A /* HeroSearch.storyboard */; };
 		9EBBE27F20BDD72900FF135A /* HeroSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */; };
@@ -57,6 +60,9 @@
 		9E9C67EF20C2B7060018F569 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		9E9C67F120C2C69B0018F569 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		9E9C67F320C2C69D0018F569 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		9E9C67F520C2D6E70018F569 /* HeroRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroRealm.swift; sourceTree = "<group>"; };
+		9E9C67F720C2D7FB0018F569 /* DbHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbHelper.swift; sourceTree = "<group>"; };
+		9E9C67F920C3F7760018F569 /* FileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		9EBBE27A20BDD57200FF135A /* HeroDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroDetail.storyboard; sourceTree = "<group>"; };
 		9EBBE27C20BDD66A00FF135A /* HeroSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroSearch.storyboard; sourceTree = "<group>"; };
 		9EBBE27E20BDD72900FF135A /* HeroSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSearchVC.swift; sourceTree = "<group>"; };
@@ -126,6 +132,8 @@
 		9EE1D7E020C2998100BEEA3A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				9E9C67F920C3F7760018F569 /* FileHelper.swift */,
+				9E9C67F720C2D7FB0018F569 /* DbHelper.swift */,
 				9EF214A920B95B1E001015AD /* FfTVC.swift */,
 				9E51B21D20BAACB30083C974 /* Constants.swift */,
 				9EF214B320B96FBB001015AD /* ParserHelper.swift */,
@@ -176,6 +184,7 @@
 				9EF214A820B95AD8001015AD /* Resources */,
 				9EE1D7E020C2998100BEEA3A /* Libs */,
 				9EF2148620B95A96001015AD /* Info.plist */,
+				9E9C67F520C2D6E70018F569 /* HeroRealm.swift */,
 				9EE1D7DE20C1878300BEEA3A /* Models.swift */,
 			);
 			path = FarFetch;
@@ -372,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EF2147B20B95A95001015AD /* AppDelegate.swift in Sources */,
+				9E9C67F620C2D6E70018F569 /* HeroRealm.swift in Sources */,
 				9EF214AA20B95B1E001015AD /* FfTVC.swift in Sources */,
 				9EBBE27F20BDD72900FF135A /* HeroSearchVC.swift in Sources */,
 				9EE1D7DF20C1878300BEEA3A /* Models.swift in Sources */,
@@ -381,8 +391,10 @@
 				9EE1D7DD20C0828400BEEA3A /* HeroDetailTVC.swift in Sources */,
 				9EF214B220B95DF6001015AD /* NetworkHelper.swift in Sources */,
 				9EF214B020B95D31001015AD /* HeroListCell.swift in Sources */,
+				9E9C67FA20C3F7770018F569 /* FileHelper.swift in Sources */,
 				9EF214AC20B95BAE001015AD /* HeroListsTVC.swift in Sources */,
 				9EE1D7D420C07EFC00BEEA3A /* String+Extension.swift in Sources */,
+				9E9C67F820C2D7FB0018F569 /* DbHelper.swift in Sources */,
 				9E51B21E20BAACB30083C974 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

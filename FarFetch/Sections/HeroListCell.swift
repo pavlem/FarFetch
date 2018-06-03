@@ -38,16 +38,12 @@ class HeroListCell: UITableViewCell {
         self.heroImg.layer.cornerRadius = heroImg.bounds.width / 2
         heroImg.layer.masksToBounds = true
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     override func prepareForReuse() {
         heroImg.image = UIImage.placeHolder
         heroName.text = ""
+        addToFavoritesBtn.setTitle("", for: .normal)
+        
         if let currentImageDataTask = currentDataTask {
             currentImageDataTask.cancel()
         }
@@ -60,9 +56,11 @@ class HeroListCell: UITableViewCell {
         heroImg.image = UIImage.placeHolder
         heroName.text = hero!.name
         
+        let addRemoveBtnTitle = realm.object(ofType: HeroRealm.self, forPrimaryKey: String(describing: hero!.id!)) != nil ? "heroListRemove".localized : "heroListAdd".localized
+        addToFavoritesBtn.setTitle(addRemoveBtnTitle, for: .normal)
+        
         if hero!.thumbnail != nil {
             let imgUrl = hero!.thumbnail!.path! + "." + hero!.thumbnail!.extension!
-
             
             if let img = heroesImgsCache.object(forKey: (imgUrl as AnyObject)) as? UIImage {
                 heroImg.image = img
@@ -88,11 +86,6 @@ class HeroListCell: UITableViewCell {
                 
                 currentDataTask!.resume()
             }
-            
-            print("==========")
-            print(imgUrl)
-            print(hero!.name ?? "")
-            print("==========")
         }
     }
     
