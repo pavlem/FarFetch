@@ -210,7 +210,7 @@ extension DbHelper {
 
                 if oldSchemaVersion < 1 {
                     print("oldSchemaVersion: \(oldSchemaVersion)")
-                    // Perform 1 Migration Block
+                    // Perform 1 Migration Block - this is for potential migrations
                 }
         })
 
