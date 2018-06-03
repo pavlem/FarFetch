@@ -23,7 +23,7 @@ class HeroRealm: Object {
     }
     
     // MARK: - API
-    func setHeroRealm(with hero: Hero) {
+    func setHeroRealmObject(with hero: Hero) {
         self.id = String(describing: hero.id!)
         self.name = hero.name!
         self.descriptionOfHero = hero.description ?? ""

@@ -42,7 +42,12 @@ class HeroListsTVC: FfTVC {
         setNavBar()
         setUIComponents()
         if !isSearchMode {
-            fetchHeroList {}
+            allOrFavoritesCtrl.isHidden = true
+            fetchHeroList {
+                DispatchQueue.main.async {
+                    self.allOrFavoritesCtrl.isHidden = false
+                }
+            }
             addRefreshControl()
         } else {
             navigationItem.rightBarButtonItem = nil
@@ -85,7 +90,7 @@ class HeroListsTVC: FfTVC {
         case .favorties:
             isFavoritesMode = true
             heroListPersisted.removeAll()
-            heroListPersisted = DbHelper.shared.getPersistedHeroes()
+            heroListPersisted = DbHelper.shared.getPersistedHeroes().sorted(by: {$0.name! < $1.name!})
             heroList = heroListPersisted
             tableView.reloadData()
         }
@@ -187,7 +192,7 @@ extension HeroListsTVC: HeroListCellDelegate {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         
         let heroRealm = HeroRealm()
-        heroRealm.setHeroRealm(with: heroList[indexPath.row])
+        heroRealm.setHeroRealmObject(with: heroList[indexPath.row])
 
         if let heroR = realm.object(ofType: HeroRealm.self, forPrimaryKey: heroRealm.id) {
             DbHelper.shared.delete(object: heroR)
