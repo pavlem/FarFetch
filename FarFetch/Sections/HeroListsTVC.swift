@@ -41,20 +41,31 @@ class HeroListsTVC: FfTVC {
         
         setNavBar()
         setUIComponents()
-        if !isSearchMode {
-            allOrFavoritesCtrl.isHidden = true
-            fetchHeroList {
-                DispatchQueue.main.async {
-                    self.allOrFavoritesCtrl.isHidden = false
-                }
-            }
-            addRefreshControl()
+        
+        if isSearchMode {
+            setSearchModeSpecificUI()
         } else {
-            navigationItem.rightBarButtonItem = nil
+            setRegularModeSpecificUI()
         }
     }
     
     // MARK: - Helper
+    func setSearchModeSpecificUI() {
+        navigationItem.rightBarButtonItem = nil
+        allOrFavoritesCtrl.isHidden = true
+        tableView.tableHeaderView = nil
+    }
+    
+    func setRegularModeSpecificUI() {
+        allOrFavoritesCtrl.isHidden = true
+        fetchHeroList {
+            DispatchQueue.main.async {
+                self.allOrFavoritesCtrl.isHidden = false
+            }
+        }
+        addRefreshControl()
+    }
+    
     func setUIComponents() {
         searchBarBtn.title = "search".localized
     }
