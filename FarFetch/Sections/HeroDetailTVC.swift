@@ -73,7 +73,7 @@ class HeroDetailTVC: FfTVC {
         case .series:
             heroesStuff = heroesSeries!
         }
-        print(sender.selectedSegmentIndex)
+        aprint(sender.selectedSegmentIndex)
     }
     
     // MARK: - Network
@@ -95,7 +95,7 @@ class HeroDetailTVC: FfTVC {
                 ParserHelper.shared.parseHeroListStuff(fromData: data, success: { (heroAppearance) in
                     parsedHeroesStuff.append(heroAppearance)
                 }, isParsingAFail: { (isFail) in
-                    print(isFail)
+                    aprint(isFail)
                 })
             }
             
@@ -112,7 +112,7 @@ class HeroDetailTVC: FfTVC {
             DispatchQueue.main.async {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
-            print(isFetchFailed)
+            aprint(isFetchFailed)
         }
     }
     

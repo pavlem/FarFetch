@@ -8,15 +8,8 @@
 
 import UIKit
 
-protocol HeroSearchVCDelegate: class {
-    func searchCompleteWith(heroes: [Hero]?)
-}
-
 class HeroSearchVC: UIViewController {
     
-    // MARK: - API
-    weak var delegate: HeroSearchVCDelegate?
-
     // MARK: - Properties
     // Outlets
     @IBOutlet weak var heroNameTextFld: UITextField!
@@ -45,7 +38,7 @@ class HeroSearchVC: UIViewController {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         NetworkHelper.shared.fetchHero(heroName, success: { (data) in
-            print(data.count)
+            aprint(data.count)
             
             ParserHelper.shared.parseHeroList(fromData: data, success: { (heroes) in
                 DispatchQueue.main.async {
@@ -58,11 +51,11 @@ class HeroSearchVC: UIViewController {
                 }
                 
             }, isParsingAFail: { (isParseFail) in
-                print(isParseFail)
+                aprint(isParseFail)
                 //.. Alert
             })
         }, isHeroSearchFailed: { (isFail) in
-            print(isFail)
+            aprint(isFail)
             // Alert..
         })
     }

@@ -13,7 +13,7 @@ var realm = try! Realm()
 
 let realmFolderName = "realmDB"
 let realmFileName = "farFetch.realm"
-let schemaVersionNumberToDelete = 2
+let schemaVersionNumberToDelete = 3
 
 class DbHelper {
     
@@ -33,7 +33,7 @@ class DbHelper {
                 realm.add(object)
             }
         } catch let err {
-            print(err)
+            aprint(err)
         }
     }
     
@@ -43,7 +43,7 @@ class DbHelper {
                 realm.add(object, update: true)
             }
         } catch let err {
-            print(err)
+            aprint(err)
         }
     }
     
@@ -53,7 +53,7 @@ class DbHelper {
                 realm.delete(object)
             }
         } catch let err {
-            print(err)
+            aprint(err)
         }
     }
     
@@ -61,7 +61,7 @@ class DbHelper {
         do {
             realm = try Realm()
         } catch let err {
-            print(err)
+            aprint(err)
         }
     }
 }
@@ -71,6 +71,20 @@ extension DbHelper {
 
     func getFavoriteHeores() -> [HeroRealm]? {
         return Array(realm.objects(HeroRealm.self))
+    }
+    
+    func getPersistedHeroes() -> [Hero] {
+        let heroesPersisted = DbHelper.shared.getFavoriteHeores()
+        
+        var heroListPersisted = [Hero]()
+        for heroP in heroesPersisted! {
+            let thumbnail = Thumbnail(path: heroP.thumbnailPath, extension: heroP.thumbnailExtension)
+            
+            let hero = Hero(id: Int(heroP.id), name: heroP.name, description: nil, modified: nil, thumbnail: thumbnail, resourceURI: nil, title: nil, comics: nil, series: nil, stories: nil, events: nil)
+            heroListPersisted.append(hero)
+        }
+        
+        return heroListPersisted
     }
 }
 

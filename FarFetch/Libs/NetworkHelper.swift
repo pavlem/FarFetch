@@ -115,7 +115,7 @@ class NetworkHelper {
             url = addQueryParams(url: url, newParams: urlQueryItemsLo)!
         }
         
-        print(url)
+        aprint(url)
         
         URLSession.shared.dataTask(with: url) { (data, urlResponse, err) in
             if let httpResponse = urlResponse as? HTTPURLResponse {

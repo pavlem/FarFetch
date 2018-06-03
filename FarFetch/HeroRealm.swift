@@ -15,19 +15,20 @@ class HeroRealm: Object {
     @objc dynamic var id = ""
     @objc dynamic var name = ""
     @objc dynamic var descriptionOfHero = ""
-    @objc dynamic var thumbnailURL = ""
-    
+    @objc dynamic var thumbnailPath = ""
+    @objc dynamic var thumbnailExtension = ""
+
     override class func primaryKey() -> String {
         return "id"
     }
-    
     
     // MARK: - API
     func setHeroRealm(with hero: Hero) {
         self.id = String(describing: hero.id!)
         self.name = hero.name!
-        self.descriptionOfHero = hero.description!
-        self.thumbnailURL = hero.thumbnail!.path! + "." + hero.thumbnail!.extension!
+        self.descriptionOfHero = hero.description ?? ""
+        self.thumbnailPath = hero.thumbnail!.path!
+        self.thumbnailExtension = hero.thumbnail!.extension!
     }
     
     

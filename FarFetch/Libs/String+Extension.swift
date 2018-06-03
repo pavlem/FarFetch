@@ -18,3 +18,15 @@ extension String {
         return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: comment)
     }
 }
+
+extension String {
+    var ns: NSString {
+        return self as NSString
+    }
+    var pathExtension: String? {
+        return ns.pathExtension
+    }
+    var lastPathComponent: String? {
+        return ns.lastPathComponent
+    }
+}

@@ -24,5 +24,8 @@ struct ViewControllerID {
     static let heroSearch = "HeroSearchTVC_ID"
 }
 
-
-
+// MARK: - Helper functions
+func aprint(_ any: Any, function: String = #function, file: String = #file, line: Int = #line) {
+    let fileName = file.lastPathComponent
+    print("🍏\(any)- - - - - - - - - - - - - - - - - - - - - \(fileName!) || \(function) || \(line)")
+}

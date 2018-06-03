@@ -20,11 +20,15 @@ class HeroListsTVC: FfTVC {
     
     // MARK: - API
     var heroList = [Hero]()
+    var heroListPersisted = [Hero]()
+    var heroListFromWeb = [Hero]()
     var isSearchMode = false
-    
+
     // MARK: - Properties
     // Vars
-    private var isLoadingMore = false // flag
+    private var isLoadingMore = false
+    private var isFavoritesMode = false
+
     // Outlets
     @IBOutlet weak var searchBarBtn: UIBarButtonItem!
     @IBOutlet weak var allOrFavoritesCtrl: UISegmentedControl!
@@ -52,7 +56,6 @@ class HeroListsTVC: FfTVC {
     
     func setNavBar() {
         navigationItem.title = "heroList".localized
-        
     }
     
     func addRefreshControl() {
@@ -74,12 +77,17 @@ class HeroListsTVC: FfTVC {
     }
     
     @IBAction func allOrFavoritesAction(_ sender: UISegmentedControl) {
-        
         switch AllOrFavorites(rawValue: sender.selectedSegmentIndex)! {
         case .all:
-            print("all")
+            isFavoritesMode = false
+            heroList = heroListFromWeb
+            tableView.reloadData()
         case .favorties:
-            print("favorties")
+            isFavoritesMode = true
+            heroListPersisted.removeAll()
+            heroListPersisted = DbHelper.shared.getPersistedHeroes()
+            heroList = heroListPersisted
+            tableView.reloadData()
         }
     }
     
@@ -91,7 +99,8 @@ class HeroListsTVC: FfTVC {
             NetworkHelper.shared.fetchHeroList(success: { (data) in
                 success()
                 ParserHelper.shared.parseHeroList(fromData: data, success: { (heroes) in
-                    self.heroList = heroes
+                    self.heroListFromWeb = heroes
+                    self.heroList = self.heroListFromWeb
                     DispatchQueue.main.async {
                         UIApplication.shared.isNetworkActivityIndicatorVisible = false
                         self.tableView.reloadData()
@@ -103,7 +112,7 @@ class HeroListsTVC: FfTVC {
                     }
                 })
             }, isHeroRetrivalFailed: { (isRequestFailed) in
-                print(isRequestFailed)
+                aprint(isRequestFailed)
             })
         }
     }
@@ -143,7 +152,7 @@ extension HeroListsTVC {
         
         // Check if the last row number is the same as the last current data element
         if indexPath.row == self.heroList.count - 1 {
-            if !isLoadingMore && !isSearchMode {
+            if !isLoadingMore && !isSearchMode && !isFavoritesMode {
                 self.isLoadingMore = true
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
                 
@@ -164,7 +173,7 @@ extension HeroListsTVC {
                             }
                         })
                     }, isHeroRetrivalFailed: { (isRequestFailed) in
-                        print(isRequestFailed)
+                        aprint(isRequestFailed)
                     })
                 }
             }
@@ -189,13 +198,3 @@ extension HeroListsTVC: HeroListCellDelegate {
         }
     }
 }
-
-//extension HeroListsTVC: HeroSearchVCDelegate {
-//    func searchCompleteWith(heroes: [Hero]?) {
-//        if let heroesLocal = heroes {
-//            self.isSearchMode = true
-//            self.heroList.removeAll()
-//            self.heroList = heroesLocal
-//        }
-//    }
-//}
