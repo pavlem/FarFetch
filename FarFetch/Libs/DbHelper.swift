@@ -1,9 +1,9 @@
 //
 //  DbHelper.swift
-//  Opi
+//  FarFetch
 //
-//  Created by Pavle Mijatovic on 7/27/17.
-//  Copyright © 2017 Carnegie Technologies. All rights reserved.
+//  Created by Pavle Mijatovic on 5/26/18.
+//  Copyright © 2018 Pavle Mijatovic. All rights reserved.
 //
 
 import Foundation
@@ -87,119 +87,6 @@ extension DbHelper {
         return heroListPersisted
     }
 }
-
-
-//extension DbHelper {
-//    func getHeroes()
-//
-//
-//    func getSettings() -> Settings? {
-//        return realm.object(ofType: Settings.self, forPrimaryKey: settingsKey)
-//    }
-//
-//    func persistSettings(name: String?) {
-//
-//        let settings = Settings(value: realm.object(ofType: Settings.self, forPrimaryKey: settingsKey) ?? Settings())
-//        
-//        settings.id = settingsKey
-//        settings.name = name ?? ""
-//
-//        if realm.objects(Settings.self).count > 0 {
-//            update(object: settings)
-//        } else {
-//            add(object: settings)
-//        }
-//    }
-//
-//    func persist(settings: Settings) {
-//        if realm.objects(Settings.self).count > 0 {
-//            update(object: settings)
-//        } else {
-//            add(object: settings)
-//        }
-//    }
-//
-//    func set(authorizationToken: String) {
-//        guard let settings = getSettings() else { return }
-//        do {
-//            try realm.write {
-//                settings.authorisationToken = authorizationToken
-//            }
-//        } catch let err {
-//            print(err)
-//        }
-//    }
-//
-//    func set(qrDisplayPinCode: String) {
-//        guard let settings = getSettings() else { return }
-//        do {
-//            try realm.write {
-//                settings.qrDisplayPinCode = qrDisplayPinCode
-//            }
-//        } catch let err {
-//            print(err)
-//        }
-//    }
-//
-//    func set(systemUserName: String) {
-//        guard let settings = getSettings() else { return }
-//        do {
-//            try realm.write {
-//                settings.systemUserName = systemUserName
-//            }
-//        } catch let err {
-//            print(err)
-//        }
-//    }
-//
-//    func set(pushToken: String) {
-//        guard let settings = getSettings() else { return }
-//        do {
-//            try realm.write {
-//                settings.pushToken = pushToken
-//            }
-//        } catch let err {
-//            aprint(err)
-//        }
-//    }
-//
-//    func set(isDisplayQRScreenLocked: Bool) {
-//        guard let settings = getSettings() else { return }
-//        do {
-//            try realm.write {
-//                settings.isDisplayQRScreenLocked = isDisplayQRScreenLocked
-//            }
-//        } catch let err {
-//            aprint(err)
-//        }
-//    }
-//
-//    func save(loginResponse: LoginResponse) {
-//        guard let settings = getSettings() else { return }
-//        do {
-//            try realm.write {
-//                settings.systemUserUID = loginResponse.uid
-//                settings.systemUserName = loginResponse.systemUserName
-//                settings.emailAddress = loginResponse.emailAddress
-//                settings.systemRoleUID = loginResponse.systemRoleUID ?? ""
-//                settings.permissions = loginResponse.permissions
-//                settings.partnerUID = loginResponse.partnerUID
-//                settings.isCarrier = loginResponse.isCarrier
-//                settings.username = loginResponse.username
-//            }
-//        } catch let err {
-//            print(err)
-//        }
-//    }
-//
-//    // MARK: - Settings getters
-//    var isDisplayQRScreenLocked: Bool {
-//        guard let settings = getSettings() else { return false }
-//        return settings.isDisplayQRScreenLocked
-//    }
-//}
-//
-
 
 // MARK: - Project related
 extension DbHelper {

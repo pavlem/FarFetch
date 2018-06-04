@@ -1,9 +1,10 @@
 //
 //  FileHelper.swift
-//  Opi
+//  FarFetch
 //
-//  Created by Pavle Mijatovic on 7/27/17.
-//  Copyright © 2017 Carnegie Technologies. All rights reserved.
+//  Created by Pavle Mijatovic on 5/26/18.
+//  Copyright © 2018 Pavle Mijatovic. All rights reserved.
+//
 
 import Foundation
 import UIKit
@@ -44,6 +45,18 @@ class FileHelper {
     
     class func documentsDir() -> String {
         var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as [String]
+        return paths[0]
+    }
+}
+
+extension FileManager {
+    class func documentsDir() -> String {
+        var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as [String]
+        return paths[0]
+    }
+    
+    class func cachesDir() -> String {
+        var paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true) as [String]
         return paths[0]
     }
 }

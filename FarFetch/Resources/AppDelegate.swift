@@ -30,7 +30,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func startRealmDBInstance() {
         DbHelper.shared.startRealmDBInstance()
     }
-
-
 }
-

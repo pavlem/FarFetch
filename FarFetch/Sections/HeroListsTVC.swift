@@ -28,7 +28,6 @@ class HeroListsTVC: FfTVC {
     // Vars
     private var isLoadingMore = false
     private var isFavoritesMode = false
-
     // Outlets
     @IBOutlet weak var searchBarBtn: UIBarButtonItem!
     @IBOutlet weak var allOrFavoritesCtrl: UISegmentedControl!
@@ -85,9 +84,14 @@ class HeroListsTVC: FfTVC {
     @objc func refreshHeroList() {
         isSearchMode = false
         NetworkHelper.shared.characterListOffset = 0
-        fetchHeroList {
-            DispatchQueue.main.async {
-                self.refreshControl?.endRefreshing()
+        
+        if isFavoritesMode {
+            self.refreshControl?.endRefreshing()
+        } else {
+            fetchHeroList {
+                DispatchQueue.main.async {
+                    self.refreshControl?.endRefreshing()
+                }
             }
         }
     }

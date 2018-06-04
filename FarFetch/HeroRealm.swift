@@ -30,31 +30,4 @@ class HeroRealm: Object {
         self.thumbnailPath = hero.thumbnail!.path!
         self.thumbnailExtension = hero.thumbnail!.extension!
     }
-    
-    
-//    convenience init(hero: Hero) {
-//        self.init()
-//
-//        self.id = String(describing: hero.id!)
-//        self.name = hero.name!
-//        self.descriptionOfHero = hero.description!
-//        self.thumbnailURL = hero.thumbnail!.path! + "." + hero.thumbnail!.extension!
-//    }
-    
-//    required init() {
-//        super.init()
-//    }
-//
-//    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-//        fatalError("init(realm:schema:) has not been implemented")
-//    }
-//
-//    required init(value: Any, schema: RLMSchema) {
-//        fatalError("init(value:schema:) has not been implemented")
-//    }
-    
-//    convenience init(myValue: String) {
-//        self.init() //Please note this says 'self' and not 'super'
-//        self.myValue = myValue
-//    }
 }

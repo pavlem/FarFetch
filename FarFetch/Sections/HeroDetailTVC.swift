@@ -23,16 +23,16 @@ class HeroDetailTVC: FfTVC {
     // MARK: - Properties
     @IBOutlet weak var heroDetailSegment: UISegmentedControl!
     // Vars
-    var heroesStuff = [HeroStuff]() {
+    private var heroesStuff = [HeroStuff]() {
         didSet {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             tableView.reloadData()
         }
     }
-    var heroesComics: [HeroStuff]?
-    var heroesEvents: [HeroStuff]?
-    var heroesStories: [HeroStuff]?
-    var heroesSeries: [HeroStuff]?
+    private var heroesComics: [HeroStuff]?
+    private var heroesEvents: [HeroStuff]?
+    private var heroesStories: [HeroStuff]?
+    private var heroesSeries: [HeroStuff]?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
